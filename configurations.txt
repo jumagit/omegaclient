@@ -1,0 +1,31 @@
+system url : supplysystem.mediaconsultants.co.ug
+cpanel username : mediaconsultants
+cpanel Password : U93a#$O*9eTA_5b^
+database credentials online
+
+databaseName :     mediaconsultants_store
+databaseUsername : mediaconsultants_supplysystem
+databasePassword : 0702499649juma
+
+
+FTP Credentials
+
+FTP Username: mediaconsultants@supplysystem.mediaconsultants.co.ug
+FTP server: ftp.mediaconsultants.co.ug
+FTP & explicit FTPS port:  21
+
+sasula.co.ug 
+
+
+username = admin.b100359
+password = golipkabengwa**
+
+
+git remote add origin https://jumagit@bitbucket.org/jumagit/omega.git
+
+
+//cell(width,height,content,border(0,1));
+
+
+
+//http://aqvatarius.com/themes/index.php?template=atlant  
