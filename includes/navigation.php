@@ -159,8 +159,14 @@
                             <li class="has-submenu">
                                 <a href="orders.php"><i class="mdi mdi-cart-plus"></i>Orders Section</a>
                                 <ul class="submenu">
+
+                                    <?php if(real_counting('customers') > 0){ ?>
                                     <li><a href="create_order.php">Create Order</a></li>
-                                    
+                                    <?php } else{?>
+
+                                    <li><a href="add_customer.php">No customers</a></li>
+
+                                    <?php } ?>
                                     
                                 </ul>
                             </li>

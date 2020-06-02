@@ -54,7 +54,8 @@ include "includes/functions.php";
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="plugins/chartist/css/chartist.min.css">
     <link href="plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
-    <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">    
+    <link href="plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 

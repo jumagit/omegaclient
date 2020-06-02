@@ -1,10 +1,63 @@
+   //customers
+
+     $(document).on("submit", "#addCustomerForm", function(e) {
+          e.preventDefault();
+
+          var formData = new FormData(this);
+
+          swal({
+               title: "Are you sure?",
+               text: "Okay to add a  New Customer",
+               type: "info",
+               padding: 20,
+               showCancelButton: true,
+               confirmButtonText: "Yes",
+               cancelButtonText: "No, cancel!",
+               confirmButtonClass: "btn btn-success",
+               cancelButtonClass: "btn btn-danger m-l-10",
+               buttonsStyling: false
+          }).then(willSave => {
+               if (willSave) {
+                    $.ajax({
+                         type: "POST",
+                         dataType: "json",
+                         url: "php_action/create_customer.php?t=true",
+                         data: formData,
+                         success: function(result) {
+                              //console.log(result);
+                              if (result.status) {
+                                   swal({
+                                        title: "Good job!",
+                                        padding: 20,
+                                        text: "Good Job! A New Customer has been Created Successfully!",
+                                        type: "success"
+                                   });
+
+                                   setTimeout(function() {
+                                        window.location.href = "add_customer.php";
+                                   }, 1000);
+                              } else {
+                                   swal({
+                                        title: "Oops!",
+                                        padding: 20,
+                                        text: result.msg + "..please try again!",
+                                        type: "warning"
+                                   });
+                              }
+                         },
+                         error: function(jqXHR) {
+                              console.log(jqXHR);
+                         },
+                         cache: false,
+                         contentType: false,
+                         processData: false
+                    });
+               }
+          });
+     });
 
 
-
-
-
-
-
+//end customers
 
      function paymentOrder(orderId = null) {
           if (orderId) {
@@ -1188,7 +1241,7 @@
                          success: function(response) {
                               // setting the rate value into the rate input field
 
-                              console.log(response);
+                              //console.log(response);
 
                               $("#price" + row).val(response.price);
                               //$("#rateValue" + row).val(response.rate);

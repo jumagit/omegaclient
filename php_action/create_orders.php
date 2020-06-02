@@ -2,6 +2,8 @@
 
 include "check_if_logged_in.php";
 
+
+
 require "../includes/db.php";
 
 // inserting brands
@@ -12,9 +14,12 @@ if ($_REQUEST['t'] == 'true') {
         $created_by = $_SESSION['fullName'];
         $client_id = $_SESSION['client_id'];
     }
+
+    $invoice_number =   generate_invoice_number();
     $address = clean($_POST['address']);
-     $customerEmail = clean($_POST['customerEmail']);
-    $orderDate = date('Y-m-d', strtotime(clean($_POST['orderDate'])));
+    $customerEmail = clean($_POST['emailAddress']);
+   // $orderDate = now();
+    $orderDate = date('Y-m-d');
     $clientName = clean($_POST['customerName']);
     $clientContact = clean($_POST['customerContact']);
     $subTotalValue = clean($_POST['subTotalValue']);
@@ -30,8 +35,19 @@ if ($_REQUEST['t'] == 'true') {
     $gstn = clean($_POST['gstn']);
     $client_id = $_SESSION['client_id'];
 
-    $sql = "INSERT INTO orders (order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due, payment_type, payment_status,payment_place, gstn,order_status,user_id,client_id)
-	VALUES ('$orderDate', '$clientName', '$clientContact', '$subTotalValue', '$vatValue', '$totalAmountValue', '$discount', '$grandTotalValue', '$paid', '$dueValue', $paymentType, $paymentStatus,$paymentPlace,$gstn, 1,$client_id,$client_id)";
+    if(count_customers() > 0) {
+
+     $sql_select = query("SELECT client_contact, total_amount, client_name, invoice_number FROM orders WHERE total_amount = '$totalAmountValue' OR paid = '$paid' OR due='$dueValue' OR invoice_number='$invoice_number' ") or die(mysqli_error($connection));
+
+
+    $count = mysqli_num_rows($sql_select);
+
+
+    if($count == 0)
+    {
+
+    $sql = "INSERT INTO orders (order_date,invoice_number, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due, payment_type, payment_status,payment_place, gstn,order_status,user_id,client_id)
+	VALUES ('$orderDate', '$invoice_number','$clientName', '$clientContact', '$subTotalValue', '$vatValue', '$totalAmountValue', '$discount', '$grandTotalValue', '$paid', '$dueValue', $paymentType, $paymentStatus,$paymentPlace,$gstn, 1,$client_id,$client_id)";
 
     $order_id;
     $orderStatus = false;
@@ -90,10 +106,29 @@ if ($_REQUEST['t'] == 'true') {
     } // /for quantity
 
     if ($sql1) {
+        
+       
         $feed_back = array('status' => true, 'msg' => 'success');
+     
     } else {
         $feed_back = array('status' => false, 'msg' => mysqli_error($connection));
     }
+
+
+     }else{
+
+    $feed_back = array('status' => false , 'msg'=>  'Order with Invoice Number  '.$invoice_number.'  already present in the system');
+
+
+}
+
+}else{
+
+
+     $feed_back = array('status' => false , 'msg'=>  'No customers present in the system');
+
+
+}
 
     $dataX = json_encode($feed_back);
     header('Content-Type: application/json');

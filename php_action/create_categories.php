@@ -16,16 +16,34 @@ if ($_REQUEST['t'] == 'true') {
     $categoriesName = $_POST['categoriesName'];
     $categoriesStatus = $_POST['categoriesStatus'];
 
+
+    $sql_select = query("SELECT categories_name FROM categories WHERE categories_name = '".$categoriesName."'") or die(mysqli_error($connection));
+
+
+    $count = mysqli_num_rows($sql_select);
+
+
+    if($count == 0)
+    {
     $sql = "INSERT INTO categories (categories_name, categories_active, categories_status,created_by,client_id)
 	VALUES ('$categoriesName', '$categoriesStatus', '1','$created_by','$client_id')";
 
-    $query = query($sql);
+    $query = query($sql)or die(mysqli_error($connection));
 
     if ($query) {
         $feed_back = array('status' => true, 'msg' => 'success');
     } else {
         $feed_back = array('status' => false, 'msg' => mysqli_error($connection));
     }
+
+   }else{
+
+    $feed_back = array('status' => false , 'msg'=>  "Category ".strtoupper($categoriesName)."  already present in the table");
+
+
+}
+
+  
 
     $dataX = json_encode($feed_back);
     header('Content-Type: application/json');

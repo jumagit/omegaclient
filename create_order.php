@@ -65,36 +65,47 @@
                                            <hr>
 
                                     <div class="row">
-                                        
+
+                                        <div class="col-10 m-auto pb-3">
+
+                                
+                                           <div class="form-group">
+                                            <label class="control-label">Search Customers if Exist</label>
+                                            <select class=" select2  form-control form-control-lg" name="customers" id="customers" onchange="load_selected_customer_data(this.value)">
+                                                <option value="0" selected="selected" disabled="disabled">Search Existing Customers</option>
+                                                
+                                               
+                                               
+                                            </select>
+                                        </div>
+                                  
+                                           
+                                                
+                                 </div>
+
+                                    
 
                                         <div class="col-md-6">
 
 
-                                                     <div class="form-group ">
-                                                       <label for="orderDate" class="control-label">Order Date</label>                                    
-                                                        <input type="text" class="form-control" id="orderDate" name="orderDate"
-                                                            required  placeholder="Select Date" />
-                                                    </div>
-                                                
                                                 <!--/form-group row-->
-                                                    <div class="form-group ">
-                                                    <label for="customerName" class=" control-label">customer Name</label>
-                                                 
-                                                        <input type="text" class="form-control" id="customerName"
-                                                            name="customerName" required placeholder="customer Name" autocomplete="off" />
-                                                    </div>
-                                                
-                                                <!--/form-group row-->
-                                                <div class="form-group ">
-                                                    <label for="customerContact" class=" control-label">customer
-                                                        Contact</label>
-                                                    
-                                                        <input type="text" class="form-control" id="customerContact"
-                                                            name="customerContact" placeholder="Contact Number" required
-                                                           />
-                                                    </div>
-                                                
-                                                        
+                                            <div class="form-group ">
+                                            <label for="customerName" class=" control-label">customer Name</label>
+                                         
+                                                <input type="text" class="form-control" id="customerName"
+                                                    name="customerName" required placeholder="customer Name" autocomplete="off" />
+                                            </div>
+                                        
+                                        <!--/form-group row-->
+                                        <div class="form-group ">
+                                            <label for="customerContact" class=" control-label">customer
+                                                Contact</label>
+                                            
+                                                <input type="text" class="form-control" id="customerContact"
+                                                    name="customerContact" placeholder="Contact Number" required
+                                                   />
+                                            </div>
+                                                                                              
 
 
                                         </div>
@@ -102,10 +113,12 @@
 
                                         <div class="col-md-6">
 
+                                           
+
 
                                                <div class="form-group ">
-                                                       <label for="orderDate" class="control-label">Email Address</label>                                    
-                                                        <input type="text" class="form-control" id="emailAddress" placeholder="Enter Email Address" name=" emailAddress"
+                                                       <label for="emailAddress" class="control-label">Email Address</label>                                    
+                                                        <input type="text" class="form-control" id="emailAddress" placeholder="Enter Email Address" name="emailAddress"
                                                             required />
                                                     </div>
                                                 
@@ -116,28 +129,12 @@
                                                         <input type="text" class="form-control" id="address"
                                                             name="address" required placeholder="customer Address" />
                                                     </div>
-                                                
-                                                <!--/form-group row-->
-                                                <div class="form-group ">
-                                                    <label for="customerContact" class=" control-label">customer
-                                                        Contact</label>
-                                                    
-                                                        <input type="text" class="form-control" id="customerContact"
-                                                            name="customerContact" placeholder="Contact Number" required
-                                                           />
-                                                    </div>
-                                                
                                             
 
                                         </div>
 
 
                                     </div>
-
-
-
-                                  
-
 
                                 </div>
 

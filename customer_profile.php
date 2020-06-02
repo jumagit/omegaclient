@@ -139,17 +139,6 @@ if (isset($_GET['id'])) {
 
 
                                 <div class="form-group">
-                                    
-                                    <label for="gender" class="form-control-label">Gender</label>                              
-                               
-                                       <select name="gender" id="gender" class="custom-select">
-                                            <option value="<?php if(isset($gender)){ echo $gender;} ?>" selected > <?php if(isset($gender)){ echo $gender; }?> </option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                       </select>
-                                   
-                                    </div>
-                                <div class="form-group">
                                     <label for="customer_names">Full Name</label>
                                     <input type="text" value="<?php if(isset($customer_names)){ echo $customer_names;} ?>"
                                         class="form-control" name="customer_names"

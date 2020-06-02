@@ -389,6 +389,52 @@ function money($amount){
  }
 
 
+function get_client_merchant_code($id){
+
+        $sql = "SELECT suppliercode FROM clients WHERE client_id = '$id' LIMIT 1";
+        $result = query($sql);        
+        while ($row = mysqli_fetch_array($result)) {
+            $code = $row[0];
+        }
+         return $code;
+
+}
+
+
+function count_customers(){
+
+         $sql = "SELECT * FROM customers WHERE client_id = '".$_SESSION['client_id']."'";
+        $result = query($sql);
+        $count = mysqli_num_rows($result);
+        return $count ;
+}
+
+
+function real_counting($table){
+
+       $sql = "SELECT * FROM $table WHERE client_id = '".$_SESSION['client_id']."'";
+        $result = query($sql);
+        $count = mysqli_num_rows($result);
+        return $count ;
+
+}
+
+
+function generate_invoice_number(){
+
+       
+        $num = count_customers();
+        $next_customer = $num + 1 ;
+        $client_merchant_code = get_client_merchant_code($_SESSION['client_id']);
+        $year     = date('Y');
+        $no_ref       = sprintf('%04d', $next_customer);       
+        $ref_number   = "OME/{$client_merchant_code}/{$no_ref}/{$year}";
+
+        return $ref_number;
+       
+    }
+
+
 
  
 ?>

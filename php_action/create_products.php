@@ -24,6 +24,19 @@ if ($_REQUEST['t'] == 'true') {
     $type = explode('.', $_FILES['productImage']['name']);
     $type = $type[count($type) - 1];
     $url = '../assets/images/stock/' . uniqid(rand()) . '.' . $type;
+
+
+     $sql_select = query("SELECT product_name, price FROM products WHERE product_name = '".$productName."'") or die(mysqli_error($connection));
+
+
+    $count = mysqli_num_rows($sql_select);
+
+
+    if($count == 0)
+    {
+
+
+
     if (in_array($type, array('gif', 'jpg', 'jpeg', 'png', 'JPG', 'GIF', 'JPEG', 'PNG'))) {
         if (is_uploaded_file($_FILES['productImage']['tmp_name'])) {
             if (move_uploaded_file($_FILES['productImage']['tmp_name'], $url)) {
@@ -37,15 +50,31 @@ if ($_REQUEST['t'] == 'true') {
                     $feed_back = array('status' => false, 'msg' => mysqli_error($connection));
                 }
 
-                $dataX = json_encode($feed_back);
-                header('Content-Type: application/json');
-                echo $dataX;
+
 
             } else {
                 return false;
             } // /else
         } // if
     } // if in_array
+
+
+
+                  }else{
+
+                    $feed_back = array('status' => false , 'msg'=>  "Product ".strtoupper($productName)."  already present in the system");
+
+
+                }
+
+
+
+                
+                $dataX = json_encode($feed_back);
+                header('Content-Type: application/json');
+                echo $dataX;
+
+
 
     $connection->close();
 
