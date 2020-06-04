@@ -18,8 +18,8 @@
                     var chartdata = {
                          labels: name,
                          datasets: [{
-                              label: 'Client Sales',
-                              backgroundColor: '#F0AD4E',
+                              label: 'orders',
+                              backgroundColor: '#ff7700',
                               borderColor: '#ff6600',
                               hoverBackgroundColor: '#CCCCCC',
                               hoverBorderColor: '#666666',

@@ -98,7 +98,7 @@ if ($_REQUEST['t'] == 'delete') {
 
 if ($_REQUEST['t'] == 'available') {
     $id = $_GET['id'];
-    $query = query("UPDATE  products  SET status = '1' WHERE brand_id='{$id}'");
+    $query = query("UPDATE  products  SET status = 1 WHERE product_id='{$id}'");
     if ($query) {
         $feed_back = array('status' => true, 'msg' => 'success');
     } else {
@@ -113,7 +113,7 @@ if ($_REQUEST['t'] == 'available') {
 
 if ($_REQUEST['t'] == 'notavailable') {
     $id = $_GET['id'];
-    $query = query("UPDATE  products  SET status = '2' WHERE brand_id='{$id}'");
+    $query = query("UPDATE  products  SET status = 0 WHERE product_id='{$id}'");
     if ($query) {
         $feed_back = array('status' => true, 'msg' => 'success');
     } else {

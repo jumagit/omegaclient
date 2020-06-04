@@ -54,7 +54,7 @@
                         <div class="col-8 offset-2">
                         <div class="card-body p-20 m-30 " style="border: 1px solid lightgray;margin:30px;">
 
-                            <h4 class="mt-0 "> Add Customer </h4>
+                            <h4 class="mt-0 "> Add Customer</h4>
 
                             
 
@@ -74,8 +74,9 @@
                                     <label for="customer_names">Full Name</label>
                                     <input type="text" value=""
                                         class="form-control" name="customer_names"
-                                        placeholder="Enter Customer Name" id="address"
+                                        placeholder="Enter Customer Name" id="customer_names"
                                         required >
+                                        <small id="customer_names_error"></small>
                                 </div>
 
 
@@ -85,15 +86,17 @@
                                         class="form-control" placeholder="Enter Customer Address" 
                                         data-bv-field="address" id="address" name="address"
                                         required >
+                                         <small id="address_error"></small>
                                        
                                 </div>
                                 <div class="form-group">
-                                    <label for="contact">Mobile Number</label>
+                                    <label for="contact">Mobile Number (256-7xx-xxx-xxx)</label>
                                     <input type="text" value=""
                                         class="form-control" name="contact" 
                                         data-bv-field="contact"  placeholder="Mobile Number" 
                                         id="contact" required
                                         >
+                                         <small id="contact_error"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="email_address">Email Address</label>
@@ -102,6 +105,8 @@
                                         class="form-control" name="email_address" placeholder="Enter Email Address" 
                                         id="email_address" required
                                         >
+
+                                         <small id="email_address_error"></small>
                                 </div>
                              
 

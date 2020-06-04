@@ -69,9 +69,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Order Date</th>
-                                        <th>Customer Name</th>
-                                        <th>Contact</th>
-                                        <th>Total Order Item</th>
+                                        <th>Customer id</th>                                      
+                                        <th> Order Cart Items</th>
                                         <th>Payment Status</th>
                                         <th><i class="fa fa-edit"></i></th>
                                         <th><i class="fa fa-eye"></i></th>

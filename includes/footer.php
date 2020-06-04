@@ -54,7 +54,7 @@
      <!-- Datatable init js -->
      <script src="assets/pages/datatables.init.js"></script>
      <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="plugins/select2/js/select2.min.js"></script>
+    
       <script src="plugins/sweet-alert2/sweetalert2.min.js"></script>
   
      <script src="assets/pages/sweet-alert.init.js"></script>
@@ -75,8 +75,12 @@
      <script src="assets/js/charts.js"> </script>
 
 
+      <script src="assets/js/validate_all.js"> </script>
+
+
  <script src="assets/js/bootstrap.bundle.min.js"></script>
-     
+
+ <script src="plugins/select2/js/select2.min.js"></script>
 
      
 
@@ -175,10 +179,6 @@
 
 
 }
-
-
-    
- 
 
 
 

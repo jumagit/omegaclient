@@ -8,7 +8,7 @@ header('Content-Type: application/json');
 
 
 // $sql = "SELECT order_status, COUNT(order_status) AS total FROM orders GROUP BY order_status";
-$sql = "SELECT order_id, order_date ,(SELECT COUNT(*) FROM order_item WHERE orders.order_id = order_item.order_id) AS total,payment_status FROM orders WHERE client_id  = '{$_SESSION['client_id']}' AND DATE(order_date) BETWEEN '2020-05-1' AND '2020-05-12' GROUP BY order_id LIMIT 10";
+$sql = "SELECT order_id, order_date ,(SELECT COUNT(*) FROM customers WHERE customer_id = orders.customer_id) AS total,payment_status FROM orders WHERE client_id  = '{$_SESSION['client_id']}' AND DATE(order_date) BETWEEN '2020-05-1' AND '2020-06-12' GROUP BY order_id LIMIT 10";
 
 //run sql query and store into variable
 $result = query($sql);

@@ -1325,13 +1325,13 @@
           $("#subTotalValue").val(totalSubAmount);
 
           // vat
-          var vat = (Number($("#subTotal").val()) / 100) * 18;
-          vat = vat.toFixed(2);
-          $("#vat").val(vat);
-          $("#vatValue").val(vat);
+          // var vat = (Number($("#subTotal").val()) / 100) * 18;
+          // vat = vat.toFixed(2);
+          // $("#vat").val(vat);
+          // $("#vatValue").val(vat);
 
           // total amount
-          var totalAmount = (Number($("#subTotal").val()) + Number($("#vat").val()));
+          var totalAmount = Number($("#subTotal").val());
           totalAmount = totalAmount.toFixed(2);
           $("#totalAmount").val(totalAmount);
           $("#totalAmountValue").val(totalAmount);

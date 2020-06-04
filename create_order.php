@@ -43,98 +43,105 @@
                         <div class="card-body">
 
                             <h4 class="mt-0 header-title">Create Order</h4>
-                            <div class="alert alert-dark bg-dark  font-weight-normal  text-white alert-dismissible fade show"
+                          
+
+
+
+
+
+                            <form class="form-horizontal pb-5" method="POST" action="#" id="createOrderForm">
+
+
+                                <div class="container">
+
+                                    <div class="card ">
+
+                                        <div class="bg-dark">
+                                            
+                                            <h4 class="text-center text-white"><i class="mdi mdi-account-box"></i> Customer Information</h4>
+                                        </div>
+                                        <br>
+                                          <div class="alert alert-info  font-weight-normal  alert-dismissible fade show"
                                 role="alert"> <button type="button" class="close" data-dismiss="alert"
                                     aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
-                                </button> <strong> <i class=" mdi mdi-arrow-down-box"></i> </strong>Here you can create
-                                Customer Order
+                                </button> <strong> <i class=" mdi mdi-arrow-down-box"></i> </strong>Fill in customer information.
+                               
                             </div>
+                                        
 
+                                        <div class="card-body bg-light">
 
-                           
-
-
-                            <form class="form-horizontal pb-5" method="POST" action="#"
-                                id="createOrderForm">
-
-
-                                <div class="col-md-12 m-auto">
-
-                                          <h5 class="text-center pt-2 ">Customer Information</h5>
-                                           <hr>
-
-                                    <div class="row">
+                                            <div class="row">
 
                                         <div class="col-10 m-auto pb-3">
 
-                                
-                                           <div class="form-group">
-                                            <label class="control-label">Search Customers if Exist</label>
-                                            <select class=" select2  form-control form-control-lg" name="customers" id="customers" onchange="load_selected_customer_data(this.value)">
-                                                <option value="0" selected="selected" disabled="disabled">Search Existing Customers</option>
-                                                
-                                               
-                                               
-                                            </select>
-                                        </div>
-                                  
-                                           
-                                                
-                                 </div>
 
-                                    
+                                            <div class="form-group">
+                                                <label class="control-label">Search Customers if Exist</label>
+                                                <select class=" select2  form-control form-control-lg form-control form-control-lg-lg" name="customers"
+                                                    id="customers" onchange="load_selected_customer_data(this.value)">
+                                                    <option value="0" selected="selected" disabled="disabled">Search
+                                                        Existing Customers</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <hr>
+
+
 
                                         <div class="col-md-6">
-
-
-                                                <!--/form-group row-->
+                                            <!--/form-group row-->
                                             <div class="form-group ">
-                                            <label for="customerName" class=" control-label">customer Name</label>
-                                         
-                                                <input type="text" class="form-control" id="customerName"
-                                                    name="customerName" required placeholder="customer Name" autocomplete="off" />
-                                            </div>
-                                        
-                                        <!--/form-group row-->
-                                        <div class="form-group ">
-                                            <label for="customerContact" class=" control-label">customer
-                                                Contact</label>
-                                            
-                                                <input type="text" class="form-control" id="customerContact"
-                                                    name="customerContact" placeholder="Contact Number" required
-                                                   />
-                                            </div>
-                                                                                              
+                                                <label for="customerName" class=" control-label">customer Name</label>
 
+                                                <input type="text" class="form-control form-control-lg" id="customerName"
+                                                    name="customerName" required placeholder="customer Name"
+                                                    autocomplete="off" />
+                                                <small id="customerName_error"></small>
+                                            </div>
 
+                                            <!--/form-group row-->
+                                            <div class="form-group ">
+                                                <label for="customerContact" class=" control-label">customer
+                                                    Contact</label>
+                                                <input type="text" class="form-control form-control-lg" id="customerContact"
+                                                    name="customerContact" placeholder="Contact Number" required />
+                                            </div>
                                         </div>
 
 
                                         <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label for="emailAddress" class="control-label">Email Address</label>
+                                                <input type="text" class="form-control form-control-lg" id="emailAddress"
+                                                    placeholder="Enter Email Address" name="emailAddress" required />
+                                            </div>
 
-                                           
+                                            <!--/form-group row-->
+                                            <div class="form-group ">
+                                                <label for="customerName" class=" control-label">customer
+                                                    Address</label>
 
+                                                <input type="text" class="form-control form-control-lg" id="address" name="address"
+                                                    required placeholder="customer Address" />
+                                            </div>
 
-                                               <div class="form-group ">
-                                                       <label for="emailAddress" class="control-label">Email Address</label>                                    
-                                                        <input type="text" class="form-control" id="emailAddress" placeholder="Enter Email Address" name="emailAddress"
-                                                            required />
-                                                    </div>
-                                                
-                                                <!--/form-group row-->
-                                                    <div class="form-group ">
-                                                    <label for="customerName" class=" control-label">customer Address</label>
-                                                 
-                                                        <input type="text" class="form-control" id="address"
-                                                            name="address" required placeholder="customer Address" />
-                                                    </div>
-                                            
 
                                         </div>
 
 
                                     </div>
+                                            
+
+
+                                        </div>
+                                    </div>
+
+                                   
+
+                                    
 
                                 </div>
 
@@ -146,8 +153,18 @@
 
                                 <div class="container m-auto pb-5">
 
-                                    <h5 class="text-center pt-2 ">Order Section</h5>
-                                    <div class="alert alert-dark bg-dark  font-weight-normal  text-white alert-dismissible fade show"
+                                     <div class="card ">
+
+                                        <div class="bg-dark">
+                                            
+                                            <h4 class="text-center text-white"><i class="mdi mdi-cart-plus"></i> Order Section</h4>
+                                        </div>
+                                        
+
+                                        <div class="card-body bg-light">
+
+                                 
+                                    <div class="alert alert-info  font-weight-normal   alert-dismissible fade show"
                                         role="alert"> <button type="button" class="close" data-dismiss="alert"
                                             aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -192,10 +209,10 @@
                                                 <td>
 
                                                     <div class="form-group">
-                                                        <img src="" alt="image" width="50" height="50"
+                                                        <img src=""  width="50" height="50"
                                                             id="img<?php echo $x; ?>"
                                                             class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
-                                                            alt="">
+                                                            alt="" >
                                                     </div>
                                                 </td>
 
@@ -225,7 +242,7 @@
                                                     <div class="form-group">
 
                                                         <input type="text" name="quantity[]"
-                                                            id="quantity<?php echo $x; ?>" class="form-control" 
+                                                            id="quantity<?php echo $x; ?>" class="form-control form-control-lg"
                                                             placeholder="">
 
                                                     </div>
@@ -234,8 +251,8 @@
 
                                                     <div class="form-group">
 
-                                                        <input type="text" class="form-control" name="price[]"
-                                                            id="price<?php echo $x; ?>" >
+                                                        <input type="text" class="form-control form-control-lg" name="price[]"
+                                                            id="price<?php echo $x; ?>">
 
                                                     </div>
                                                 </td>
@@ -245,8 +262,8 @@
                                                     <div class="form-group">
 
                                                         <input type="number" name="quantityTaken[]"
-                                                            onchange="getTotal(<?php echo $x; ?>, this.value)" 
-                                                            id="quantityTaken<?php echo $x; ?>" class="form-control"
+                                                            onchange="getTotal(<?php echo $x; ?>, this.value)"
+                                                            id="quantityTaken<?php echo $x; ?>" class="form-control form-control-lg"
                                                             min="1">
 
                                                     </div>
@@ -259,7 +276,7 @@
                                                     <div class="form-group">
 
                                                         <input type="text" name="totalProductPrice[]"
-                                                            id="totalProductPrice<?php echo $x; ?>" class="form-control"
+                                                            id="totalProductPrice<?php echo $x; ?>" class="form-control form-control-lg"
                                                             disabled>
 
                                                     </div>
@@ -271,7 +288,7 @@
 
                                                     <div class="form-group">
 
-                                                        <button class="btn btn-danger " type="button"
+                                                        <button class="btn btn-danger btn-lg " type="button"
                                                             onclick="deleteRow()">
                                                             X</button>
 
@@ -288,143 +305,209 @@
                                         </tbody>
                                     </table>
 
+                                    
+
+                                </div>
+
+                            </div>
+
+
+
+
+                                    <style>
+                                        
+                                        #due,#subTotal,#totalAmount,#grandTotal,#paymentType>option{
+                                            font-size:24px !important;color:red;font-weight:bold;
+                                        }#paid{ font-size:24px !important;color:green;font-weight:bold;}                                     
+
+                                        
+                                        
+                                    </style>
+
+
                                     <hr>
 
 
-                                    <div class="container">
+                                    <div class="container" id="pay">
+
+
+                                        <div class="card ">
+
+                                        <div class="bg-dark">
+                                            
+                                            <h4 class="text-center text-white"> <i class="mdi mdi-credit-card-settings"></i> Payment Section</h4>
+                                        </div>
+                                        <br>
+                                        <div class="alert alert-info  font-weight-normal   alert-dismissible fade show"
+                                        role="alert"> <button type="button" class="close" data-dismiss="alert"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button> <strong> <i class=" mdi mdi-arrow-down-box"></i> </strong> In this
+                                        section, fill in the form to pay.
+                                    </div>
+                                        
+
+                                        <div class="card-body bg-light" style="border:2px solid lightblue;">
 
                                         <div class="row">
 
 
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label for="subTotal" class="col-sm-3 control-label">Sub
+                                                    <label for="subTotal" class="col-sm-12 control-label">Sub
                                                         Amount</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" required id="subTotal"
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text bg-dark text-white">UGX</span>
+                                                            </div>
+                                                                <input type="text" class="form-control form-control-lg" required id="subTotal"
                                                             name="subTotal" disabled="true" />
-                                                        <input type="hidden" class="form-control" required id="subTotalValue"
-                                                            name="subTotalValue" />
+                                                        </div>
+                                                    
+                                                        <input type="hidden" class="form-control form-control-lg" required
+                                                            id="subTotalValue" name="subTotalValue" />
                                                     </div>
                                                 </div>
                                                 <!--/form-group-->
                                                 <!--/form-group-->
-                                                <div class="form-group row">
-                                                    <label for="totalAmount" class="col-sm-3 control-label">Total
-                                                        Amount</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="totalAmount" required
-                                                            name="totalAmount" disabled="true" />
-                                                        <input type="hidden" class="form-control" id="totalAmountValue" required
-                                                            name="totalAmountValue" />
+
+                                                     <div class="form-group row">
+                                                    <label for="paymentStatus" class="col-sm-12 control-label">Payment
+                                                        Status (check one Type only)</label>
+                                                    <div class="col-sm-12">
+
+
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" id="empty" name="paymentStatus" value="1">
+                                                          <label class="form-check-label" for="empty"> No Payment</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" id="installment" value="2" name="paymentStatus">
+                                                          <label class="form-check-label" for="installment">Installment</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" id="full" value="3" name="paymentStatus">
+                                                          <label class="form-check-label" for="full">Full Payment</label>
+                                                        </div>
+
+
                                                     </div>
                                                 </div>
+                                               
+                                                <!--/form-group-->
+                                                
                                                 <!--/form-group-->
                                                 <div class="form-group row">
-                                                    <label for="discount"
-                                                        class="col-sm-3 control-label">Discount</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="discount" required
-                                                            name="discount" onkeyup="discountFunc()"
-                                                            autocomplete="off" />
-                                                    </div>
-                                                </div>
-                                                <!--/form-group-->
-                                                <div class="form-group row">
-                                                    <label for="grandTotal" class="col-sm-3 control-label">Grand
+                                                    <label for="grandTotal" class="col-sm-12 control-label">Grand
                                                         Total</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="grandTotal" required
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text bg-dark text-white">UGX</span>
+                                                            </div>
+                                                        <input type="text" class="form-control form-control-lg" id="grandTotal" required
                                                             name="grandTotal" disabled="true" />
-                                                        <input type="hidden" class="form-control" id="grandTotalValue"
+                                                        </div>
+                                                        <input type="hidden" class="form-control form-control-lg" id="grandTotalValue"
                                                             name="grandTotalValue" />
                                                     </div>
                                                 </div>
                                                 <!--/form-group-->
-                                                <div class="form-group row">
-                                                    <label for="vat" class="col-sm-3 control-label gst">GST 18%</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="vat" name="gstn"
-                                                            readonly="true" />
-                                                        <input type="hidden" class="form-control" id="vatValue"
-                                                            name="vatValue" />
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
                                             <!--/col-md-6-->
 
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label for="paid" class="col-sm-3 control-label">Paid Amount</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="paid" name="paid"
-                                                            autocomplete="off" onkeyup="paidAmount()" required/>
+                                                    <label for="paid" class="col-sm-12 control-label">Paid Amount</label>
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text bg-dark text-white">UGX</span>
+                                                            </div>
+                                                        <input type="text" class="form-control form-control-lg" id="paid" name="paid"
+                                                            autocomplete="off" onkeyup="paidAmount()" required />
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!--/form-group-->
                                                 <div class="form-group row">
-                                                    <label for="due" class="col-sm-3 control-label">Due Amount</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="due" name="due"
+                                                    <label for="due" class="col-sm-12 control-label">Due Amount</label>
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text bg-dark text-white">UGX</span>
+                                                            </div>
+                                                        <input type="text" class="form-control form-control-lg" id="due" name="due"
                                                             disabled="true" />
-                                                        <input type="hidden" class="form-control" id="dueValue"
+                                                        </div>
+                                                        <input type="hidden" class="form-control form-control-lg" id="dueValue"
                                                             name="dueValue" />
                                                     </div>
                                                 </div>
                                                 <!--/form-group-->
                                                 <div class="form-group row">
-                                                    <label for="customerContact" class="col-sm-3 control-label">Payment
-                                                        Type</label>
-                                                    <div class="col-sm-9">
-                                                    <!-- <div class="btn-group">
+                                                    <label for="paymentType" class="col-sm-12 control-label">Payment
+                                                        Method (check one method only)</label>
+                                                    <div class="col-sm-12">
 
-                                                    <button type="button" class="btn btn-primary">MTN Momo</button>
-                                                    <button type="button" class="btn btn-danger">Airtel Money</button>
-                                                    <button type="button" class="btn btn-dark"> <i class="fa fa-dollar-sign text-light"></i>  Cash</button>
-                                                    
-                                                    </div> -->
-                                                        <select class="form-control" name="paymentType"
-                                                            id="paymentType" required>
-                                                            <option value="">~~SELECT~~</option>
-                                                            <option value="1">Cheque</option>
-                                                            <option value="2">Cash</option>
-                                                            <option value="3">Credit Card</option>
-                                                        </select>
+
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" id="airtel" name="paymentType" value="1">
+                                                          <label class="form-check-label" for="airtel"> <img src="assets/images/airtel.jpg" alt="" width="100"></label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" id="mtn" value="2" name="paymentType">
+                                                          <label class="form-check-label" for="mtn"> <img src="assets/images/mtn.jpg" alt="" width="100"></label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" id="cente" value="3" name="paymentType">
+                                                          <label class="form-check-label" for="cente"> <img src="assets/images/cente.png" alt="" width="100"></label>
+                                                        </div>
+
+
                                                     </div>
                                                 </div>
-                                                <!--/form-group-->
-                                                <div class="form-group row">
-                                                    <label for="customerContact" class="col-sm-3 control-label">Payment
-                                                        Status</label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" required name="paymentStatus"
-                                                            id="paymentStatus">
-                                                            <option value="">~~SELECT~~</option>
-                                                            <option value="1">Full Payment</option>
-                                                            <option value="2">Advance Payment</option>
-                                                            <option value="3">No Payment</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <!--/form-group-->
-                                                <div class="form-group row">
-                                                    <label for="customerContact" class="col-sm-3 control-label">Payment
-                                                        Place</label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" required name="paymentPlace"
-                                                            id="paymentPlace">
-                                                            <option value="">~~SELECT~~</option>
-                                                            <option value="1">In Uganda</option>
-                                                            <option value="2">Out Of Uganda</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <!--/form-group-->
+                                               
+                                               
                                             </div>
                                             <!--/col-md-6-->
 
 
 
+
+                                                </div>
+
+
+                                            </div>
+
+
+
+                                            <div class="card-footer">
+                                                
+
+                                                <div class="form-group">
+
+                                    <div class=" btn-group btn-group-lg float-right">
+
+
+                                        <button type="button" class="btn btn-primary " onclick="addRow()" id="addRowBtn">
+                                            <i class="mdi mdi-plus-circle"></i> Add Row </button>
+
+                                        <button type="submit" id="createOrderBtn" class="btn btn-success"><i
+                                                class="fas fa-paper-plane"></i> Save
+                                            Changes</button>
+
+                                        <button type="reset" class="btn btn-warning" onclick="resetOrderForm()"><i
+                                                class="fas fa-times-circle"></i> Reset
+                                        </button>
+
+                                    </div>
+                                </div>
+
+
+                                            </div>
 
                                         </div>
 
@@ -436,24 +519,7 @@
 
 
 
-                                <div class="form-group">
-
-                                    <div class=" btn-group float-right">
-
-
-                                        <button type="button" class="btn btn-primary" onclick="addRow()" id="addRowBtn">
-                                            <i class="mdi mdi-plus-circle"></i> Add Row </button>
-
-                                        <button type="submit" id="createOrderBtn" class="btn btn-success"><i
-                                                class="mdi mdi-checked"></i> Save
-                                            Changes</button>
-
-                                        <button type="reset" class="btn btn-warning" onclick="resetOrderForm()"><i
-                                                class="mdi mdi-erase"></i> Reset
-                                        </button>
-
-                                    </div>
-                                </div>
+                                
                             </form>
 
 

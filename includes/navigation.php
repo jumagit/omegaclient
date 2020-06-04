@@ -1,5 +1,5 @@
  <header id="topnav">
-            <div class="topbar-main">
+            <div class="topbar-main"  style="background-image: linear-gradient(90deg, blue, purple);">
                 <div class="container-fluid">
 
                     <!-- Logo container-->
@@ -51,7 +51,7 @@
                                       
                                     </div>
                                   
-                                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
+                                    <a href="activity_logs.php" class="dropdown-item text-center text-primary">
                                         View all <i class="fi-arrow-right"></i>
                                     </a>
                                 </div>        
@@ -149,7 +149,8 @@
                             <li class="has-submenu">
                                 <a href="products.php"><i class="mdi mdi-apps"></i>Stock Section</a>
                                 <ul class="submenu">
-                                    <li><a href="out_stock.php">Out Stock</a></li>                                 
+                                    <li><a href="out_stock.php">Out Stock</a></li>  
+                                     <li><a href="Unavailable_products.php">Unavailable</a></li>                               
                                     
                                 </ul>
                             </li>
@@ -172,12 +173,17 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-basket-fill"></i>Sales Section</a>
+                                <a href="#"><i class="mdi mdi-account-group"></i>Customer Section</a>
+                                  <ul class="submenu">
+                                    <li><a href="customers.php">Customers</a></li>  
+                                    <li><a href="add_customer.php">Add Customer</a></li>                               
+                                    
+                                </ul>
                             </li>                           
 
 
                             <li class="has-submenu">
-                                <a href="reports.php"><i class="mdi mdi-finance"></i>Reports Sectionclear</a>
+                                <a href="reports.php"><i class="mdi mdi-finance"></i>Reports Section</a>
                                
                             </li>
 

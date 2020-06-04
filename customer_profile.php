@@ -39,7 +39,7 @@
 if (isset($_GET['id'])) {  
 
 
-    $fetch_customer = query("SELECT * FROM customers WHERE order_id = '".$_GET['id']."'");
+    $fetch_customer = query("SELECT * FROM customers WHERE customer_id = '".$_GET['id']."'");
 
     if(mysqli_num_rows($fetch_customer) > 0) {
 
@@ -47,16 +47,16 @@ if (isset($_GET['id'])) {
             $customer_names = $row['customer_names'];
             $contact = $row['contact'];
             $address = $row['address'];
-            $order_id = $row['order_id'];
-            $gender = $row['gender'];
+            $customer_id = $row['customer_id'];
+          
             $email_address = $row['email_address'];           
 
     } }else{
 
         $msg = " <div class='alert alert-warning  alert-dismissible fade show'>
-                                        <button type='button' class='close' data-dismiss='alert'>×</button> <strong>Well done!</strong> No Customer Information Please...
-                                         <script type='text/javascript'>setTimeout(function() { window.location.href = 'orders.php';}, 2000);</script>
-                                    </div>";
+                    <button type='button' class='close' data-dismiss='alert'>×</button> <strong>Well done!</strong> No Customer Information Please...
+                     <script type='text/javascript'>setTimeout(function() { window.location.href = 'orders.php';}, 2000);</script>
+                </div>";
     }
 
  
@@ -73,9 +73,9 @@ if (isset($_GET['id'])) {
                     $E_address = clean($_POST['address']);
                     $E_order_id = clean($_POST['order_id']);
                     $E_email_address = clean($_POST['email_address']);  
-                    $E_gender = clean($_POST['gender']);
+                    
 
-                    $update_query = query(" UPDATE customers SET address = '$E_address', customer_names = '$E_customer_names', contact = '$E_contact', gender = '$E_gender', email_address = '$E_email_address' WHERE order_id = '$E_order_id' ");  
+                    $update_query = query(" UPDATE customers SET address = '$E_address', customer_names = '$E_customer_names', contact = '$E_contact',  email_address = '$E_email_address' WHERE customer_id = '$E_order_id' ");  
                        if(!empty($E_gender) AND !empty($E_email_address) AND !empty($E_contact) AND !empty($E_address)){
                       if ($update_query) {
                             writeLog("Made an edit on  Customer Information : {$E_email_address}  from {$IP}", $_SESSION['username'], "INFO");
@@ -153,7 +153,7 @@ if (isset($_GET['id'])) {
                                         class="form-control"
                                         data-bv-field="address" id="address" name="address"
                                         required >
-                                        <input type="hidden" name="order_id" value="<?php if(isset($order_id)){ echo $order_id; } ?>">
+                                        <input type="hidden" name="order_id" value="<?php if(isset($customer_id)){ echo $customer_id; } ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="contact">Mobile Number</label>

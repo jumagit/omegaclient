@@ -14,7 +14,7 @@ while ($row = mysqli_fetch_array($sql)) {
 
     $product_id = $row['product_id'];
     $product_name = $row['product_name'];
-    $rate = $row['rate'];
+   
   
     $categories_id = $row['categories_id'];
     $quantity = $row['quantity'];
@@ -36,7 +36,7 @@ if (isset($_POST['update'])) {
     $productStatus = clean($_POST['productStatus']);
     $price = clean($_POST['price']);
     $quantity = clean($_POST['quantity']);
-    $rate = clean($_POST['rate']);
+    
    
     $categoryName = clean($_POST['categoryName']);
     //$productImage = clean($_POST['productImage']);
@@ -55,7 +55,7 @@ if (isset($_POST['update'])) {
 
                     if (!empty($categoryName) && !empty($productName) && !empty($price)) {
                         $sql = "UPDATE products SET product_name = '$productName',product_image='$productImage', categories_id = '$categoryName',
-                        quantity = '$quantity', rate = '$rate', active = '$productStatus', status = 1 WHERE product_id = $product_id ";
+                        quantity = '$quantity', active = '$productStatus', status = 1 WHERE product_id = $product_id ";
                 
                         $update_query = query($sql);
                 
@@ -86,7 +86,7 @@ if (isset($_POST['update'])) {
 
         if (!empty($categoryName) && !empty($productName) && !empty($price)) {
             $sql = "UPDATE products SET product_name = '$productName', categories_id = '$categoryName',
-            quantity = '$quantity', rate = '$rate', active = '$productStatus', status = 1 WHERE product_id = $product_id ";
+            quantity = '$quantity', active = '$productStatus', status = 1 WHERE product_id = $product_id ";
     
             $update_query = query($sql);
     

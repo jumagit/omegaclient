@@ -29,6 +29,9 @@ $connectionUsername = 'root';
 $connectionPassword = '';
 $connectionName = 'store';
 
+
+global $connection;
+
 //Connect and select the database
 $connection = mysqli_connect($connectionHost, $connectionUsername, $connectionPassword, $connectionName);
 
@@ -92,6 +95,25 @@ function sendMailFront($emailAddress,$subject,$body){
 
 
 
+}
+
+function checking_any_existance($field,$id,$table,$column){
+      if (isset($_POST[$field])) {   
+            $field = $_POST[$field];
+            $field = clean($field);
+            $result = query("SELECT $id FROM $table WHERE $column = '$field'");
+            while($row = mysqli_fetch_array($result)){
+                $return_id = $row[0];
+            }
+            if (mysqli_num_rows($result) == 1)
+             {
+               return true;
+            }
+            else{
+              return $result_id;
+            }             
+       
+    }
 }
 
 function printReport($html,$subject){
@@ -401,12 +423,16 @@ function get_client_merchant_code($id){
 }
 
 
-function count_customers(){
+function orders_count(){
 
-         $sql = "SELECT * FROM customers WHERE client_id = '".$_SESSION['client_id']."'";
-        $result = query($sql);
-        $count = mysqli_num_rows($result);
-        return $count ;
+          global $connection;
+
+         $sql = "SELECT order_id FROM orders WHERE client_id = '".$_SESSION['client_id']."'  ";
+         $result = query($sql);
+         while ($row = mysqli_fetch_array($result)) {
+              $id = $row[0];
+          } 
+      return $id;
 }
 
 
@@ -423,7 +449,7 @@ function real_counting($table){
 function generate_invoice_number(){
 
        
-        $num = count_customers();
+        $num = orders_count();
         $next_customer = $num + 1 ;
         $client_merchant_code = get_client_merchant_code($_SESSION['client_id']);
         $year     = date('Y');

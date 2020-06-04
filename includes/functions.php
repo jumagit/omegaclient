@@ -129,10 +129,10 @@ function fetch_logs()
 
 
 //brands
-function fetch_brands()
+function fetch_customers()
 {
 
-    $sql = "SELECT * FROM brands WHERE client_id = ".$_SESSION['client_id']." ORDER BY brand_id DESC";
+    $sql = "SELECT * FROM customers WHERE client_id = ".$_SESSION['client_id']." ORDER BY customer_id DESC";
 
     $result = query($sql);
 
@@ -144,24 +144,23 @@ function fetch_brands()
 
         while ($trailRow = mysqli_fetch_array($result)) {
 
-            $count++;
-            $brand_id = $trailRow['brand_id'];
-            $brand_name = $trailRow['brand_name'];
-            $brandStatus = $trailRow['brand_status'];
-            if($brandStatus == 1){
-                $brandStatus = "<i class='fa fa-battery-full'></i> Available";
-            }else{
-                $brandStatus = "<i class='fa fa-battery-empty'></i> Unavailable";
-            }
+                $count++;
+                $customer_id = $trailRow['customer_id'];
+                $customer_names = $trailRow['customer_names'];
+                $contact = $trailRow['contact'];
+                $email_address = $trailRow['email_address'];
+                $address = $trailRow['address'];
+
+               
 
             $output .= "<tr>
            <td>{$count}</td>
-           <td>{$brand_name}</td>
-           <td>{$brandStatus}</td>
-           <td><a onclick='makeAvailable($brand_id)' class='text-info'><i class='fa fa-battery-full'></i> Available  </a></td>
-           <td><a onclick='notAvailable($brand_id)' class='text-success'><i class='fa fa-battery-empty'></i> Not Available  </a></td>
-           <td><a href='edit_brands.php?edit={$brand_id}' ><i class='fa fa-edit'></i></a></td>
-           <td><a onclick='deleteBrand($brand_id)' class='text-danger'><i class='fa fa-trash'></i></a></td>
+           <td>{$customer_names}</td>
+           <td>{$email_address}</td>
+           <td>{$address}</td>
+           <td>{$contact}</td>
+           <td><a href='customer_profile.php?edit={$customer_id}' ><i class='fa fa-edit'></i></a></td>
+           <td><a onclick='deleteBrand($customer_id)' class='text-danger'><i class='fa fa-trash'></i></a></td>
            </tr>";
 
         }
@@ -270,10 +269,71 @@ function fetch_products()
 {
 
     $sql = "SELECT products.product_id, products.product_name, products.product_image,
-    products.categories_id, products.quantity, products.rate, products.active, products.status, 
+    products.categories_id, products.quantity, products.active, products.status, 
+     categories.categories_name,products.total_sales FROM products   
+   INNER JOIN categories ON products.categories_id = categories.categories_id  
+   WHERE  products.quantity>0 AND products.status = '1' AND  products.client_id = ".$_SESSION['client_id']."";
+
+    $result = query($sql);
+
+    if (mysqli_num_rows($result) > 0) {
+
+        $output = "";
+
+        $count = 0;
+
+        while ($trailRow = mysqli_fetch_array($result)) {
+
+            $count++;
+            $product_id = $trailRow[0];          
+            $product_image  = substr($trailRow[2], 3);
+            $num_sold = $trailRow[8];
+            $product_category = $trailRow[7];
+            $product_name = $trailRow[1];          
+            $quantity = $trailRow[4];
+            $status  =  $trailRow[6];
+            if ($status === '1') {
+                $status = "Available";
+            }else{
+                $status = "Not Available"; 
+
+            }
+           
+           
+
+            $output .= "<tr>
+           <td>{$count}</td>
+           <td><img src='{$product_image}' width='50' height='50' alt='Product Image'></td>
+           <td>{$product_name}</td>  
+           <td>{$quantity}</td>                 
+           <td>{$product_category}</td>
+            <td><button class='btn btn-sm btn-danger'>{$num_sold} Sold</button></td> 
+           <td>{$status}</td>           
+           <td><a onclick='pNotAvailable($product_id)' class='text-success'><i class='fa fa-battery-empty'></i> Not Available  </a></td>
+           <td><a href='edit_products.php?edit={$product_id}' class='text-info'><i class='fa fa-edit'></i></a></td>
+           <td><a onclick='deleteProduct($product_id)' class='text-danger'><i class='fa fa-trash'></i></a></td>
+           </tr>";
+
+        }
+
+    }
+
+    echo $output;
+}
+
+
+
+//unavailable products 
+
+
+function fetch_unavailable_products()
+{
+
+    $sql = "SELECT products.product_id, products.product_name, products.product_image,
+    products.categories_id, products.quantity,  products.active, products.status, 
      categories.categories_name FROM products   
    INNER JOIN categories ON products.categories_id = categories.categories_id  
-   WHERE  products.quantity>0 AND  products.client_id = ".$_SESSION['client_id']."";
+   WHERE  products.quantity < 1 AND products.status = '0' AND  products.client_id = ".$_SESSION['client_id']."";
 
     $result = query($sql);
 
@@ -290,12 +350,12 @@ function fetch_products()
            // $product_image = $trailRow[2];
             $product_image  = substr($trailRow[2], 3);
             // $product_brand = $trailRow[10];
-            $product_category = $trailRow[8];
+            $product_category = $trailRow[7];
             $product_name = $trailRow[1];          
             $quantity = $trailRow[4];
-            $status  =  $trailRow[8];
+            $status  =  $trailRow[6];
 
-            if ($status == 1) {
+            if ($status === 1) {
                 $status = "Available";
             }else{
                 $status = "Not Available"; 
@@ -313,7 +373,7 @@ function fetch_products()
            <td>{$product_category}</td>
            <td>{$status}</td>
            <td><a onclick='pMakeAvailable($product_id)' class='text-info'><i class='fa fa-battery-full'></i> Available  </a></td>
-           <td><a onclick='pNotAvailable($product_id)' class='text-success'><i class='fa fa-battery-empty'></i> Not Available  </a></td>
+           
            <td><a href='edit_products.php?edit={$product_id}' ><i class='fa fa-edit'></i></a></td>
            <td><a onclick='deleteProduct($product_id)' class='text-danger'><i class='fa fa-trash'></i></a></td>
            </tr>";
@@ -327,11 +387,10 @@ function fetch_products()
 
 
 
-
 function fetch_orders()
 {
 
-    $sql = "SELECT order_id, order_date, client_name, client_contact, payment_status FROM orders WHERE order_status = 1 AND  client_id = ".$_SESSION['client_id']."";    
+    $sql = "SELECT order_id, order_date, customer_id, payment_status FROM orders WHERE   client_id = ".$_SESSION['client_id']."";    
 
     $result = query($sql);
 
@@ -346,8 +405,7 @@ function fetch_orders()
             $count++;
             $order_id =  $trailRow['order_id'];
             $order_date = $trailRow['order_date'];
-            $client_name = $trailRow['client_name'];
-            $client_contact = $trailRow['client_contact'];
+            $customer_id = $trailRow['customer_id'];
 
             //payment status
             $payment_status = $trailRow['payment_status'];
@@ -365,28 +423,25 @@ function fetch_orders()
 
             $countOrderItemSql = "SELECT count(*) FROM order_item WHERE order_id = $order_id";
             $itemCountResult = query($countOrderItemSql);
-            $itemCountRow = $itemCountResult->fetch_row();
+            while ($row = mysqli_fetch_array($itemCountResult)) {
+              $itemCountRow = $row[0];
+            }
+           
+            $fetch_customer = "SELECT customers.customer_names FROM customers WHERE customers.customer_id = $customer_id";
+            $fetchCustomer = query($fetch_customer);
+            while($row = mysqli_fetch_array($fetchCustomer)){
+            $customerName = $row[0];
+          }
        
 
 
-             //payment type
-            //  $payment_type = $trailRow['payment_status'];
-
-            //  if($payment_status == 1){
-            //      $payment_status = "Full Payment";
-            //  }else if($payment_status == 2){
-            //      $payment_status = "Advance Payment";paymentOrderModal
-            //  }else{
-            //      $payment_status = "No Payment"; 
-            //  }
- 
+         
 
             $output .= "<tr>
            <td>{$count}</td>
            <td>{$order_date}</td>
-           <td><a href='customer_profile.php?id=$order_id' class='btn btn-secondary'>{$client_name}</a></td>
-           <td>{$client_contact}</td>
-           <td>{$itemCountRow[0]}</td>           
+           <td><a href='customer_profile.php?id=$customer_id' class='btn btn-secondary'>{$customerName}</a></td>          
+           <td>{$itemCountRow}</td>           
            <td>$payment_status</td>
            <td><a href='edit_order.php?id=$order_id' class='btn btn-outline-info'><i class='fa fa-edit'></i></a></td>
       
@@ -431,11 +486,6 @@ function fetch_out_of_stock()
            
 
         
-            //fetching total order items           
-
-            // $countOrderItemSql = "SELECT count(*) FROM order_item WHERE order_id = $order_id";
-            // $itemCountResult = query($countOrderItemSql);
-            // $itemCountRow = $itemCountResult->fetch_row();
        
 
 $created_on = f_date($trailRow[5]);

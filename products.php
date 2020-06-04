@@ -23,8 +23,7 @@
 
                     <h4 class="page-title">Products</h4>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Agroxa</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Tables</a></li>
+                       
                         <li class="breadcrumb-item active">Products</li>
                     </ol>
                 </div>
@@ -69,8 +68,8 @@
                                         <th>Product Name</th>
                                         <th>Quantity</th>                                       
                                         <th>Category</th>
-                                        <th>Status</th>
-                                        <th><i class='fa fa-battery-full'></i> Available</th>
+                                        <th>Sold So Far</th>
+                                        <th>Status</th>                                    
                                         <th><i class='fa fa-battery-empty'></i> Not Available</th>
                                         <th><i class="fa fa-edit"></i></th>
                                         <th><i class="fa fa-trash"></i></th>
@@ -177,15 +176,7 @@
 
                                
 
-                                <!-- <div class="form-group row">
-                                    <label for="rate" class="col-sm-3 control-label">Rate: </label>
-                                    <label class="col-sm-1 control-label">: </label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="rate" placeholder="Rate" name="rate"
-                                            autocomplete="off">
-                                    </div>
-                                </div> -->
-
+                              
                                
                                 <div class="form-group row">
                                     <label for="categoryName" class="col-sm-3 control-label">Category Name: </label>
@@ -214,7 +205,7 @@
                                         <select class="form-control" id="productStatus" name="productStatus">
                                             <option value="">~~SELECT~~</option>
                                             <option value="1">Available</option>
-                                            <option value="2">Not Available</option>
+                                            <option value="0">Not Available</option>
                                         </select>
                                     </div>
                                 </div> <!-- /form-group-->
