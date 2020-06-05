@@ -3,17 +3,8 @@
 <?php include"includes/navigation.php"; ?>
 <!-- End Navigation Bar-->
 
-
-<?php
-
-
-
-
-
-?>
-
 <!-- page wrapper start -->
-<div class="wrapper">
+<div class="wrapper mb-5">
     <div class="page-title-box">
         <div class="container-fluid">
 
@@ -126,44 +117,78 @@
 
 
 
-                        
+                        <hr>
                           
 
-
-                        </div>
-                    </div>
-
-
-
-                </div>
 
 
                 <div class="col-xl-12 ">
 
-                    <div class="bg-white">
+                   <div class="row">
 
 
-                        <div class="card-body">
+                        <div class="col-lg-6">
 
-                            <h4 class="mt-0 header-title">Orders View</h4>
-
-                            <ul class="list-inline widget-chart m-t-20 m-b-15 text-center">
-                               
-                            </ul>
-
-                            <canvas id="clientSales" height="230"></canvas>
-
-                        </div>
+                                <div class="bg-white">
 
 
-                    </div>
+                                    <div class="card-body">
 
+                                        <h4 class="mt-0 header-title">Orders View</h4>
+
+                                        <ul class="list-inline widget-chart m-t-20 m-b-15 text-center">
+                                        
+                                        </ul>
+
+                                        <canvas id="clientSales" height="230"></canvas>
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div> 
+
+
+                        <div class="col-lg-6">
+
+                            <div class="bg-white">
+
+
+                                <div class="card-body">
+
+                                    <h4 class="mt-0 header-title">Customers Scale</h4>
+
+                                    <ul class="list-inline widget-chart m-t-20 m-b-15 text-center">
+                                    
+                                    </ul>
+
+                                    <canvas id="clientSales" height="230"></canvas>
+
+                                </div>
+
+
+                            </div>
+
+                        
+                        </div>                  
+                   
+                   </div>
                 </div>
 
 
 
 
                 <!-- end row -->
+
+                
+                </div>
+                    </div>
+
+
+                </div>
+
 
 
 

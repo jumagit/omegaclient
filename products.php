@@ -32,7 +32,7 @@
 
                             <h4 class="mt-0 header-title">View All Stock</h4>
 
-                            <div class="alert alert-dark bg-dark  font-weight-normal  text-white alert-dismissible fade show"
+                            <div class="alert alert-info  font-weight-normal  alert-dismissible fade show"
                                 role="alert"> <button type="button" class="close" data-dismiss="alert"
                                     aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -49,7 +49,7 @@
                             <table id="datatable-buttons"
                                 class="table table-striped table-bordered dt-responsive nowrap"
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead>
+                                <thead class="bg-info text-white">
                                     <tr>
                                         <th>#</th>
                                         <th>Image</th>

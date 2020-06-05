@@ -1,0 +1,150 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,900,700,500,300,100);
+#invoice-POS{
+  border:1px solid #333;
+  padding:20px;
+  margin: 0 auto;
+  font-size:24px;
+  font-family: 'Roboto', sans-serif;
+  width: 900px;
+  background: #fff;
+ 
+  
+}
+h1{
+  font-size: 1.5em;
+  color: #222;
+}
+h2{font-size: .9em;}
+h3{
+  font-size: 1.2em;
+  font-weight: 300;
+  line-height: 2em;
+}
+p{
+  font-size: .7em;
+  color: #666;
+  line-height: 1.2em;
+}
+ 
+ #mid,#bot{ /* Targets all id with 'col-' */
+  border-bottom: 1px solid #EEE;
+  padding-bottom:30px;
+}
+
+#top { /* Targets all id with 'col-' */
+  border-bottom: 1px solid #EEE;
+ 
+}
+
+#top{min-height: 100px;}
+#mid{min-height: 80px;} 
+#bot{ min-height: 50px;}
+
+#top .logo{
+  float: left;
+	height: 60px;
+	width: 80px;
+	background: url(assets/images/logo.png) no-repeat;
+
+}
+.clientlogo{
+  float: left;
+	height: 60px;
+	width: 60px;
+	background: url(assets/images/logo.png) no-repeat;
+
+  border-radius: 50px;
+}
+.info .heaf{
+  display: block;
+  text-align:center;
+  line-height:1;
+  margin:auto;
+}
+
+
+
+ .invoice-box {
+        max-width: 800px;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #333;
+        font-size: 16px;
+        line-height: 24px;
+         font-family: arial, sans-serif;
+        color: #555;
+    }
+    
+    .invoice-box table {
+        width: 100%;
+        font-size:22px;
+         
+      
+        line-height: inherit;
+        text-align: left;
+    }
+    
+    .invoice-box table td {
+        padding: 5px;
+        vertical-align: top;
+    }
+    
+    .invoice-box table tr td:nth-child(2) {
+        text-align: right;
+    }  
+    
+     .invoice-box table tr.heading td {
+          text-transform:uppercase ;
+        background: #eee;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+    
+    .invoice-box table tr.details td {
+        padding-bottom: 20px;
+    }
+    
+    
+    
+    
+.title{
+  float: right;
+}
+.title p{text-align: right;} 
+#products {
+  font-size:16px;
+  width: 100%;
+  border-collapse: collapse;
+}
+.heads {
+  font-size:16px;
+  width: 100%;
+ 
+}
+
+#products td{
+  padding: 5px 0 5px 15px;
+  border: 1px solid #EEE
+}
+
+#products .payment{
+ color:red;
+ font-weight:bold;
+ font-size:22px;
+}
+.tabletitle{
+  padding: 5px;
+  font-size: 20px;
+  color:#333;
+  background: #EEE;
+}
+.service{border-bottom: 1px solid #EEE;}
+/*.item{width: 24mm;}*/
+.itemtext{font-size: 20px;color:#333;}
+
+#legalcopy{
+  margin-top: 5mm;
+}
+
+  
+  

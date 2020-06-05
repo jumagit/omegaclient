@@ -1,6 +1,4 @@
-<?php  
-
-
+<?php 
 ob_start();
 
 session_start();
@@ -59,4 +57,4 @@ include "includes/functions.php";
 
 </head>
 
-<body style="background-image: linear-gradient(90deg, blue, purple);">
+<body style="background-image: linear-gradient(90deg, #002F47, #002F47);">

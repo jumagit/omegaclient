@@ -8,25 +8,12 @@
     <div class="page-title-box">
         <div class="container-fluid">
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="state-information d-none d-sm-block">
-                        <div class="state-graph">
-                            <div id="header-chart-1"></div>
-                            <div class="info">Balance $ 2,317</div>
-                        </div>
-                        <div class="state-graph">
-                            <div id="header-chart-2"></div>
-                            <div class="info">Item Sold 1230</div>
-                        </div>
-                    </div>
+             <div class="row">
+                <div class="col-sm-12 text-center">
+                    
 
-                    <h4 class="page-title">Report</h4>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Report</a></li>
-                        
-                        
-                    </ol>
+                    <h2 class="text-white"> <i class="fa fa-folder-open"></i> Reports </h2>
+                    
                 </div>
             </div>
         </div>
@@ -45,7 +32,7 @@
 
                             <h4 class="mt-0 header-title">Generate Report</h4>
 
-                            <div class="alert alert-dark bg-dark  font-weight-normal  text-white alert-dismissible fade show"
+                            <div class="alert alert-info  font-weight-normal  alert-dismissible fade show"
                                 role="alert"> <button type="button" class="close" data-dismiss="alert"
                                     aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -57,7 +44,7 @@
                             <div class="col-md-8 m-auto">
 
 
-                                  <form action="general_report.php" target="_blank" method="POST" class="form-horizontal">
+                                  <form action="general_report.php"  target="_blank" method="POST" class="form-horizontal">
                             
 
                              <div class="form-group row">
