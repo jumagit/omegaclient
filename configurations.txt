@@ -8,6 +8,21 @@ databaseUsername : mediaconsultants_supplysystem
 databasePassword : 0702499649juma
 
 
+//connection configuration
+// $connectionHost = 'genesis';
+// $connectionUsername = 'mediaconsultants_supplysystem';
+// $connectionPassword = '0702499649juma';
+// $connectionName = 'mediaconsultants_store';
+
+
+//Email credentials
+
+define('SYSTEM_EMAIL','omega@supplysystem.mediaconsultants.co.ug');
+define('SMTP_PORT',587);
+define('SMTP_HOST','genesis');
+define('SYSTEM_EMAIL_PASSWORD','3tbDNkMvUIVB');
+
+
 FTP Credentials
 
 FTP Username: mediaconsultants@supplysystem.mediaconsultants.co.ug

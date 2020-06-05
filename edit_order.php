@@ -9,30 +9,23 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="state-information d-none d-sm-block">
-                        <div class="state-graph">
-                            <div id="header-chart-1"></div>
-                            <div class="info">Balance $ 2,317</div>
-                        </div>
-                        <div class="state-graph">
-                            <div id="header-chart-2"></div>
-                            <div class="info">Item Sold 1230</div>
-                        </div>
-                    </div>
+                <div class="col-sm-12 text-center">
+                    
 
-                    <h4 class="page-title">Categories</h4>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Plane Page</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Tables</a></li>
-                        <li class="breadcrumb-item active">Plane Page</li>
-                    </ol>
+                    <h2 class="">Edit Order</h2>
+                    
                 </div>
             </div>
         </div>
         <!-- end container-fluid -->
 
     </div>
+     <style>
+                                        
+    #due,#subTotal,#totalAmount,#grandTotal,#paymentType>option{
+        font-size:24px !important;color:red;font-weight:bold;
+    }#paid{ font-size:24px !important;color:green;font-weight:bold;}
+</style>
     <!-- page-title-box -->
 
     <div class="page-content-wrapper">
@@ -55,12 +48,35 @@
                             <?php
 
                                $orderId = $_GET['id'];
+                               $orderId = base64_decode($orderId);
 
-                              $sql = "SELECT orders.order_id, orders.order_date, orders.client_name, orders.client_contact, orders.sub_total, orders.vat, orders.total_amount, orders.discount, orders.grand_total, orders.paid, orders.due, orders.payment_type, orders.payment_status,orders.payment_place,orders.gstn FROM orders  
-                                WHERE orders.order_id = {$orderId}";
 
-                              $result = query($sql);
-                              $data = $result->fetch_row();
+
+                              $sql = "SELECT order_id,customer_id, sub_total,  grand_total, paid, due,payment_type, payment_status FROM orders WHERE order_id = '$orderId'";
+                              $result = query($sql);                            
+                              while ($row = mysqli_fetch_array($result)) {                                 
+                                 $order_id = $row['order_id'];
+                                 $customer_id = $row['customer_id'];
+                                 $sub_total = $row['sub_total'];
+                                 $grand_total = $row['grand_total'];
+                                 $paid        = $row['paid'];
+                                 $due         = $row['due'];
+                                 $payment_status= $row['payment_status'];
+                                 $payment_type  = $row['payment_type'];
+                              }  
+
+                              //customer data
+                              $sql1 = "SELECT customer_names, address, email_address, contact FROM customers WHERE customer_id = '$customer_id' ";
+                              $customer = query($sql1);  
+                              while($c = mysqli_fetch_array($customer)){
+                              $address = $c['address'];
+                              $contact = $c['contact'];
+                              $customer_names = $c['customer_names'];
+                              $email_address = $c['email_address'];
+                              }
+
+
+
                               ?>
 
 
@@ -70,38 +86,104 @@
                             <form class="form-horizontal pb-5" method="POST" action="#" id="editOrderForm">
 
 
-                                <div class="col-md-8 m-auto">
+                                            <div class="container">
+
+                                                <div class="card ">
+
+                                                    <div class="bg-dark">
+                                                        
+                                                        <h4 class="text-center text-white"><i class="mdi mdi-account-box"></i> Customer Information</h4>
+                                                    </div>
+                                                    <br>
+                                                      <div class="alert alert-info  font-weight-normal  alert-dismissible fade show"
+                                            role="alert"> <button type="button" class="close" data-dismiss="alert"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button> <strong> <i class=" mdi mdi-arrow-down-box"></i> </strong>Fill in customer information.
+                                           
+                                        </div>
+                                        
+
+                                        <div class="card-body bg-light">
+
+                                            <div class="row">
+
+                                        <div class="col-10 m-auto pb-3">
 
 
-                                    <div class="form-group row">
-                                        <label for="orderDate" class="col-sm-4 control-label">Order Date</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="orderDate" name="orderDate"
-                                                value="<?php echo $data[1];  ?>" required />
+                                            <div class="form-group">
+                                                <label class="control-label">Search Customers if Exist</label>
+                                                <select class=" select2  form-control form-control-lg form-control form-control-lg-lg" name="customers"
+                                                    id="customers" onchange="load_selected_customer_data(this.value)">
+                                                    <option value="0" selected="selected" disabled="disabled">Search
+                                                        Existing Customers</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!--/form-group row-->
-                                    <div class="form-group row">
-                                        <label for="customerName" class="col-sm-4 control-label">customer Name</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="customerName"
-                                                name="customerName" required value="<?php echo $data[2];  ?>"
-                                                autocomplete="off" />
+
+                                        <hr>
+
+
+
+                                        <div class="col-md-6">
+                                            <!--/form-group row-->
+                                            <div class="form-group ">
+                                                <label for="customerName" class=" control-label">customer Name</label>
+
+                                                <input type="text" class="form-control form-control-lg" id="customerName"
+                                                    name="customerName" required value="<?php echo $customer_names; ?>" 
+                                                    autocomplete="off" />
+                                                <small id="customerName_error"></small>
+                                            </div>
+
+                                            <!--/form-group row-->
+                                            <div class="form-group ">
+                                                <label for="customerContact" class=" control-label">customer
+                                                    Contact (256-703-550-329)</label>
+                                                <input type="text" class="form-control form-control-lg" id="customerContact"
+                                                    name="customerContact" value="<?php echo $contact; ?>" required />
+                                                    <small id="customerContact_error"></small>
+                                            </div>
                                         </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label for="emailAddress" class="control-label">Email Address</label>
+                                                <input type="text" class="form-control form-control-lg" id="emailAddress"
+                                                    name="emailAddress" value="<?php echo $email_address; ?>" required />
+                                                    <small id="emailAddress_error"></small>
+                                            </div>
+
+                                            <!--/form-group row-->
+                                            <div class="form-group ">
+                                                <label for="customerName" class=" control-label">customer
+                                                    Address</label>
+
+                                                <input type="text" class="form-control form-control-lg" id="address" name="address"
+                                                    required value="<?php echo $address;  ?>" />
+                                                    <small id="address_error"></small>
+                                            </div>
+
+
+                                        </div>
+
+
                                     </div>
-                                    <!--/form-group row-->
-                                    <div class="form-group row">
-                                        <label for="customerContact" class="col-sm-4 control-label">customer
-                                            Contact</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="customerContact"
-                                                name="customerContact" value="<?php echo $data[3];  ?>" required
-                                                autocomplete="off" />
+                                            
+
+
                                         </div>
                                     </div>
 
+                                   
+
+                                    
 
                                 </div>
+
+
+                              
 
 
                                 <hr>
@@ -111,7 +193,18 @@
 
                                 <div class="container m-auto pb-5">
 
-                                    <h5 class="text-center pt-2 ">Order Section</h5>
+                                    <div class="card ">
+
+                                        <div class="bg-dark">
+                                            
+                                            <h4 class="text-center text-white"><i class="mdi mdi-cart-plus"></i> Order Section</h4>
+                                        </div>
+                                        
+
+                                        <div class="card-body bg-light">
+
+
+
                                     <div class="alert alert-dark bg-dark  font-weight-normal  text-white alert-dismissible fade show"
                                         role="alert"> <button type="button" class="close" data-dismiss="alert"
                                             aria-label="Close">
@@ -142,9 +235,9 @@
                                             <?php 
 
 
-                                             $orderId = $_GET['id'];
+                                            
 
-                                              $orderItemSql = "SELECT order_item.order_item_id, order_item.order_id, order_item.product_id, order_item.quantityTaken, order_item.total FROM order_item WHERE order_item.order_id = '$orderId' ";
+                                              $orderItemSql = "SELECT * FROM order_item WHERE order_id = '$orderId' ";
                                               $orderItemResult = query($orderItemSql);
 
                                              $arrayNumber = 0;
@@ -166,14 +259,14 @@
 
                                                         <?php
 
-                                                    $productSql = "SELECT product_id, product_image FROM products WHERE  status == 1 AND quantity != 0 AND client_id =  '{$_SESSION['client_id']}' ";
+                                                    $productSql = "SELECT product_id, product_image FROM products WHERE  quantity > 0 AND client_id =  '".$_SESSION['client_id']."' ";
                                                     $productData = query($productSql);
 
                                                     while($row = mysqli_fetch_array($productData)) {                     
 
-                                                    if($row['product_id'] == $orderItemData['product_id']) { 
+                                                    if($row[0] === $orderItemData['product_id']) { 
 
-                                                        $url = substr($row['product_image'],3);
+                                                        $url = substr($row[1],3);
 
                                                         echo' <img src="'.$url.'" alt="image" width="50" height="50" name="product_image[]"
                                                         id="product_image<?php echo $x; ?>"
@@ -212,7 +305,7 @@
                                                                 while($row = mysqli_fetch_array($productData)) { 
 
                                                                   $selected = "";
-                                                                  if($row['product_id'] == $orderItemData['product_id']) {
+                                                                  if($row[0] == $orderItemData['product_id']) {
                                                                     $selected = "selected";
                                                                   } else {
                                                                     $selected = "";
@@ -238,12 +331,12 @@
 
                                                         <?php
 
-                                                        $productSql = "SELECT product_id, quantity FROM products WHERE  status = 1 AND quantity != 0";
+                                                        $productSql = "SELECT product_id, quantity FROM products WHERE  quantity > 0 AND client_id = '".$_SESSION['client_id']."' ";
                                                         $productData = query($productSql);
 
                                                         while($row = mysqli_fetch_array($productData)) {                     
                                                         
-                                                          if($row['product_id'] == $orderItemData['product_id']) { 
+                                                          if($row[0] == $orderItemData['product_id']) { 
                                                            
                                                             echo'<input type="text" name="quantity[]"
                                                             id="available_quantity'.$row['product_id'].'" value="'.$row['quantity'].'" class="form-control"  />';
@@ -270,12 +363,12 @@
 
                                                         <?php
 
-                                                    $productSql = "SELECT product_id, price FROM products WHERE  status = 1 AND quantity != 0";
+                                                    $productSql = "SELECT product_id,price FROM products WHERE  quantity > 0 AND client_id = '".$_SESSION['client_id']."' ";
                                                     $productData = query($productSql);
 
                                                     while($row = mysqli_fetch_array($productData)) {                     
 
-                                                    if($row['product_id'] == $orderItemData['product_id']) { 
+                                                    if($row[0] == $orderItemData['product_id']) { 
                                                     
                                                         echo'<input type="text" class="form-control" name="price[]"
                                                         id="price'.$x.'"  value="'.$row['price'].'"  />';
@@ -356,196 +449,220 @@
                                         </tbody>
                                     </table>
 
+                                </div>
+
                                     <hr>
 
 
-                                    <div class="container">
+                                   <div class="container" id="pay">
+
+
+                                        <div class="card ">
+
+                                        <div class="bg-dark">
+                                            
+                                            <h4 class="text-center text-white"> <i class="mdi mdi-credit-card-settings"></i> Payment Section</h4>
+                                        </div>
+                                        <br>
+                                                <div class="alert alert-info  font-weight-normal   alert-dismissible fade show"
+                                                role="alert"> <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button> <strong> <i class=" mdi mdi-arrow-down-box"></i> </strong> In this
+                                                section, fill in the form to pay.
+                                            </div>
+                                                
+
+                                        <div class="card-body bg-light" style="border:2px solid lightblue;">
 
                                         <div class="row">
 
 
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label for="subTotal" class="col-sm-3 control-label">Sub
+                                                    <label for="subTotal" class="col-sm-12 control-label">Sub
                                                         Amount</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control"
-                                                            value="<?php echo $data[4]; ?>" required id="subTotal"
-                                                            name="subTotal" disabled="true" />
-                                                        <input type="hidden" class="form-control"
-                                                            value="<?php echo $data[4]; ?>" required id="subTotalValue"
-                                                            name="subTotalValue" />
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text bg-dark text-white">UGX</span>
+                                                            </div>
+                                                                <input type="text" class="form-control form-control-lg" required id="subTotal"
+                                                            name="subTotal" disabled="true" value="<?php echo $sub_total; ?>" />
+                                                        </div>
+                                                    
+                                                        <input type="hidden" class="form-control form-control-lg" required
+                                                            id="subTotalValue" name="subTotalValue"  value="<?php echo $sub_total; ?>"/>
                                                     </div>
                                                 </div>
                                                 <!--/form-group-->
                                                 <!--/form-group-->
-                                                <div class="form-group row">
-                                                    <label for="totalAmount" class="col-sm-3 control-label">Total
-                                                        Amount</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="totalAmount"
-                                                            value="<?php echo $data[6]; ?>" required name="totalAmount"
-                                                            disabled="true" />
-                                                        <input type="hidden" class="form-control" id="totalAmountValue"
-                                                            value="<?php echo $data[6]; ?>" required
-                                                            name="totalAmountValue" />
+
+                                                     <div class="form-group row">
+                                                    <label for="paymentStatus" class="col-sm-12 control-label">Payment
+                                                        Status (check one Type only)</label>
+                                                    <div class="col-sm-12">
+
+
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" id="empty" name="paymentStatus" value="1"
+
+                                                          <?php if($payment_status == 1) {
+                                                                        echo "checked";
+                                                                    } ?>
+                                                          >
+                                                          <label class="form-check-label" for="empty"> No Payment</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" id="installment" value="2" name="paymentStatus"
+                                                           <?php if($payment_status == 2) {
+                                                                        echo "checked";
+                                                                    } ?>
+                                                                    >
+                                                          <label class="form-check-label" for="installment">Installment</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" id="full" value="3" name="paymentStatus"
+                                                           <?php if($payment_status == 3) {
+                                                                        echo "checked";
+                                                                    } ?>
+                                                                    >
+                                                          <label class="form-check-label" for="full">Full Payment</label>
+                                                        </div>
+
+
                                                     </div>
                                                 </div>
+                                               
+                                                <!--/form-group-->
+                                                
                                                 <!--/form-group-->
                                                 <div class="form-group row">
-                                                    <label for="discount"
-                                                        class="col-sm-3 control-label">Discount</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="discount" required
-                                                            value="<?php echo $data[7]; ?>" name="discount"
-                                                            onkeyup="discountFunc()" autocomplete="off" />
-                                                    </div>
-                                                </div>
-                                                <!--/form-group-->
-                                                <div class="form-group row">
-                                                    <label for="grandTotal" class="col-sm-3 control-label">Grand
+                                                    <label for="grandTotal" class="col-sm-12 control-label">Grand
                                                         Total</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="grandTotal" required
-                                                            name="grandTotal" disabled="true"
-                                                            value="<?php echo $data[8]; ?>" />
-                                                        <input type="hidden" class="form-control" id="grandTotalValue"
-                                                            name="grandTotalValue" value="<?php echo $data[8]; ?>" />
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text bg-dark text-white">UGX</span>
+                                                            </div>
+                                                        <input type="text" class="form-control form-control-lg" id="grandTotal" required value="<?php echo $grand_total; ?>"
+                                                            name="grandTotal" disabled="true" />
+                                                        </div>
+                                                        <input type="hidden" class="form-control form-control-lg" id="grandTotalValue" value="<?php echo $grand_total; ?>"
+                                                            name="grandTotalValue" />
                                                     </div>
                                                 </div>
                                                 <!--/form-group-->
-                                                <div class="form-group row">
-                                                    <label for="vat"
-                                                        class="col-sm-3 control-label gst"><?php if($data[13] == 2) {echo "IGST 18%";} else echo "VAT 18%"; ?></label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="vat" name="gstn"
-                                                            value="<?php echo $data[5]; ?>" readonly="true" />
-                                                        <input type="hidden" class="form-control" id="vatValue"
-                                                            value="<?php echo $data[5]; ?>" name="vatValue" />
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
                                             <!--/col-md-6-->
 
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label for="paid" class="col-sm-3 control-label">Paid Amount</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="paid" name="paid"
-                                                            value="<?php echo $data[9]; ?>" autocomplete="off"
-                                                            onkeyup="paidAmount()" required />
+                                                    <label for="paid" class="col-sm-12 control-label">Paid Amount</label>
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text bg-dark text-white">UGX</span>
+                                                            </div>
+                                                        <input type="text" class="form-control form-control-lg" id="paid" name="paid"
+                                                            autocomplete="off" value="<?php echo$paid; ?>" onkeyup="paidAmount()" required />
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!--/form-group-->
                                                 <div class="form-group row">
-                                                    <label for="due" class="col-sm-3 control-label">Due Amount</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="due" name="due"
-                                                            value="<?php echo $data[10]; ?>" disabled="true" />
-                                                        <input type="hidden" class="form-control" id="dueValue"
-                                                            value="<?php echo $data[10]; ?>" name="dueValue" />
+                                                    <label for="due" class="col-sm-12 control-label">Due Amount</label>
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text bg-dark text-white">UGX</span>
+                                                            </div>
+                                                        <input type="text" class="form-control form-control-lg" id="due" name="due"
+                                                            disabled="true"  value="<?php echo$due; ?>" />
+                                                        </div>
+                                                        <input type="hidden" class="form-control form-control-lg" id="dueValue"
+                                                            name="dueValue"  value="<?php echo$due; ?>"/>
+                                                          <input type="hidden" name="orderId" value="<?php echo $orderId; ?>"> 
+                                                           <input type="hidden" name="customer_id" value="<?php echo $customer_id; ?>">   
                                                     </div>
                                                 </div>
                                                 <!--/form-group-->
                                                 <div class="form-group row">
-                                                    <label for="customerContact" class="col-sm-3 control-label">Payment
-                                                        Type</label>
-                                                    <div class="col-sm-9">
-                                                        <!-- <div class="btn-group">
+                                                    <label for="paymentType" class="col-sm-12 control-label">Payment
+                                                        Method (check one method only)</label>
+                                                    <div class="col-sm-12">
 
-                                                    <button type="button" class="btn btn-primary">MTN Momo</button>
-                                                    <button type="button" class="btn btn-danger">Airtel Money</button>
-                                                    <button type="button" class="btn btn-dark"> <i class="fa fa-dollar-sign text-light"></i>  Cash</button>
-                                                    
-                                                    </div> -->
-                                                        <select class="form-control" name="paymentType" id="paymentType"
-                                                            required>
-                                                            <option value="">~~SELECT~~</option>
-                                                            <option value="1" <?php if($data[11] == 1) {
-                                                                echo "selected";
-                                                              } ?>>Cheque</option>
-                                                            <option value="2" <?php if($data[11] == 2) {
-                                                                echo "selected";
-                                                              } ?>>Cash</option>
-                                                            <option value="3" <?php if($data[11] == 3) {
-                                                                echo "selected";
-                                                              } ?>>Credit Card</option>
-                                                        </select>
+
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" id="airtel" name="paymentType" value="1" <?php if($payment_type == 1) {
+                                                                        echo "checked";
+                                                                    } ?> >
+                                                          <label class="form-check-label" for="airtel"> <img src="assets/images/airtel.jpg" alt="" width="100"></label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" id="mtn" value="2"
+                                                          <?php if($payment_type == 2) {
+                                                                        echo "checked";
+                                                                    } ?>
+
+                                                           name="paymentType">
+                                                          <label class="form-check-label" for="mtn"> <img src="assets/images/mtn.jpg" alt="" width="100"></label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                          <input class="form-check-input" type="radio" id="cente" value="3"
+
+                                                          <?php if($payment_type == 3) {
+                                                                        echo "checked";
+                                                                    } ?>
+                                                                     name="paymentType">
+                                                          <label class="form-check-label" for="cente"> <img src="assets/images/cente.png" alt="" width="100"></label>
+                                                        </div>
+
+
                                                     </div>
                                                 </div>
-                                                <!--/form-group-->
-                                                <div class="form-group row">
-                                                    <label for="customerContact" class="col-sm-3 control-label">Payment
-                                                        Status</label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" required name="paymentStatus"
-                                                            id="paymentStatus">
-                                                            <option value="">~~SELECT~~</option>
-                                                            <option value="1" <?php if($data[12] == 1) {
-                                                                echo "selected";
-                                                              } ?>>Full Payment</option>
-                                                            <option value="2" <?php if($data[12] == 2) {
-                                                                echo "selected";
-                                                              } ?>>Advance Payment</option>
-                                                            <option value="3" <?php if($data[10] == 3) {
-                                                                echo "selected";
-                                                              } ?>>No Payment</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <!--/form-group-->
-                                                <div class="form-group row">
-                                                    <label for="customerContact" class="col-sm-3 control-label">Payment
-                                                        Place</label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" required name="paymentPlace"
-                                                            id="paymentPlace">
-                                                            <option value="">~~SELECT~~</option>
-                                                            <option value="1" <?php if($data[13] == 1) {
-                                                                echo "selected";
-                                                              } ?>>In Uganda</option>
-                                                            <option value="2" <?php if($data[13] == 2) {
-                                                                echo "selected";
-                                                              } ?>>Out of Uganda</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <!--/form-group-->
+                                               
+                                               
                                             </div>
                                             <!--/col-md-6-->
 
 
 
 
+                                                </div>
+
+
+                                            </div>
+
+
+
+                                            <div class="card-footer">
+                                                
+
+                                                <div class="form-group">
+
+                                                    <div class=" btn-group btn-group-lg float-right">
+
+
+                                                        <button type="button" class="btn btn-primary " onclick="addRow()" id="addRowBtn">
+                                                            <i class="mdi mdi-plus-circle"></i> Add Row </button>
+
+                                                        <button type="submit" id="createOrderBtn" class="btn btn-success"><i
+                                                                class="fas fa-paper-plane"></i> Save
+                                                            Changes</button>
+
+                                                        <button type="reset" class="btn btn-warning" onclick="resetOrderForm()"><i
+                                                                class="fas fa-times-circle"></i> Reset
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
                                         </div>
-
-                                    </div>
-
-
-
-                                </div>
-
-
-
-                                <div class="form-group">
-
-                                    <div class=" btn-group float-right">
-
-
-                                        <button type="button" class="btn btn-primary" onclick="addRow()" id="addRowBtn">
-                                            <i class="mdi mdi-plus-circle"></i> Add Row </button>
-
-                                        <button type="submit" id="createOrderBtn" class="btn btn-success"><i
-                                                class="mdi mdi-checked"></i> Save
-                                            Changes</button>
-
-
-                                        <input type="hidden" name="orderId" id="orderId"
-                                            value="<?php echo $_GET['id']; ?>" />
-
-                                        <button type="reset" class="btn btn-warning" onclick="resetOrderForm()"><i
-                                                class="mdi mdi-erase"></i> Reset
-                                        </button>
 
                                     </div>
                                 </div>

@@ -43,7 +43,7 @@
                                         Notifications (37)
                                     </h6>
                                     <div class="pre-scrollable notification-item-list" id="dropdown-menu" >
-                                        <!-- item-->
+                                      
                                        
                                       
 
@@ -161,14 +161,15 @@
                                 <a href="orders.php"><i class="mdi mdi-cart-plus"></i>Orders Section</a>
                                 <ul class="submenu">
 
-                                    <?php if(real_counting('customers') > 0){ ?>
-                                    <li><a href="create_order.php">Create Order</a></li>
-                                    <?php } else{?>
-
-                                    <li><a href="add_customer.php">No customers</a></li>
-
-                                    <?php } ?>
+                                    <?php if(real_counting('customers') < 1 ){ ?>
+                                        <li><a href="add_customer.php">No customers </a></li>
                                     
+                                    <?php } elseif(real_counting('products') < 1){?>
+                                     <li><a href="products.php">No Products</a></li>                                 
+
+                                    <?php }else{ ?>
+                                        <li><a href="create_order.php">Create Order</a></li>
+                                    <?php } ?>
                                 </ul>
                             </li>
 

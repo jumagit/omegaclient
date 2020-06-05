@@ -52,25 +52,25 @@
                             <form class="form-horizontal pb-5" method="POST" action="#" id="createOrderForm">
 
 
-                                <div class="container">
+                                            <div class="container">
 
-                                    <div class="card ">
+                                                <div class="card ">
 
-                                        <div class="bg-dark">
-                                            
-                                            <h4 class="text-center text-white"><i class="mdi mdi-account-box"></i> Customer Information</h4>
+                                                    <div class="bg-dark">
+                                                        
+                                                        <h4 class="text-center text-white"><i class="mdi mdi-account-box"></i> Customer Information</h4>
+                                                    </div>
+                                                    <br>
+                                                      <div class="alert alert-info  font-weight-normal  alert-dismissible fade show"
+                                            role="alert"> <button type="button" class="close" data-dismiss="alert"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button> <strong> <i class=" mdi mdi-arrow-down-box"></i> </strong>Fill in customer information.
+                                           
                                         </div>
-                                        <br>
-                                          <div class="alert alert-info  font-weight-normal  alert-dismissible fade show"
-                                role="alert"> <button type="button" class="close" data-dismiss="alert"
-                                    aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button> <strong> <i class=" mdi mdi-arrow-down-box"></i> </strong>Fill in customer information.
-                               
-                            </div>
                                         
 
-                                        <div class="card-body bg-light">
+                                        <div class="card-body " style="box-shadow: all;">
 
                                             <div class="row">
 
@@ -105,9 +105,10 @@
                                             <!--/form-group row-->
                                             <div class="form-group ">
                                                 <label for="customerContact" class=" control-label">customer
-                                                    Contact</label>
+                                                    Contact (256-703-550-329)</label>
                                                 <input type="text" class="form-control form-control-lg" id="customerContact"
                                                     name="customerContact" placeholder="Contact Number" required />
+                                                    <small id="customerContact_error"></small>
                                             </div>
                                         </div>
 
@@ -117,6 +118,7 @@
                                                 <label for="emailAddress" class="control-label">Email Address</label>
                                                 <input type="text" class="form-control form-control-lg" id="emailAddress"
                                                     placeholder="Enter Email Address" name="emailAddress" required />
+                                                    <small id="emailAddress_error"></small>
                                             </div>
 
                                             <!--/form-group row-->
@@ -126,6 +128,7 @@
 
                                                 <input type="text" class="form-control form-control-lg" id="address" name="address"
                                                     required placeholder="customer Address" />
+                                                    <small id="address_error"></small>
                                             </div>
 
 
@@ -161,7 +164,7 @@
                                         </div>
                                         
 
-                                        <div class="card-body bg-light">
+                                        <div class="card-body ">
 
                                  
                                     <div class="alert alert-info  font-weight-normal   alert-dismissible fade show"
@@ -318,10 +321,7 @@
                                         
                                         #due,#subTotal,#totalAmount,#grandTotal,#paymentType>option{
                                             font-size:24px !important;color:red;font-weight:bold;
-                                        }#paid{ font-size:24px !important;color:green;font-weight:bold;}                                     
-
-                                        
-                                        
+                                        }#paid{ font-size:24px !important;color:green;font-weight:bold;}
                                     </style>
 
 
@@ -338,14 +338,14 @@
                                             <h4 class="text-center text-white"> <i class="mdi mdi-credit-card-settings"></i> Payment Section</h4>
                                         </div>
                                         <br>
-                                        <div class="alert alert-info  font-weight-normal   alert-dismissible fade show"
-                                        role="alert"> <button type="button" class="close" data-dismiss="alert"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button> <strong> <i class=" mdi mdi-arrow-down-box"></i> </strong> In this
-                                        section, fill in the form to pay.
-                                    </div>
-                                        
+                                                <div class="alert alert-info  font-weight-normal   alert-dismissible fade show"
+                                                role="alert"> <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button> <strong> <i class=" mdi mdi-arrow-down-box"></i> </strong> In this
+                                                section, fill in the form to pay.
+                                            </div>
+                                                
 
                                         <div class="card-body bg-light" style="border:2px solid lightblue;">
 
@@ -489,22 +489,22 @@
 
                                                 <div class="form-group">
 
-                                    <div class=" btn-group btn-group-lg float-right">
+                                                    <div class=" btn-group btn-group-lg float-right">
 
 
-                                        <button type="button" class="btn btn-primary " onclick="addRow()" id="addRowBtn">
-                                            <i class="mdi mdi-plus-circle"></i> Add Row </button>
+                                                        <button type="button" class="btn btn-primary " onclick="addRow()" id="addRowBtn">
+                                                            <i class="mdi mdi-plus-circle"></i> Add Row </button>
 
-                                        <button type="submit" id="createOrderBtn" class="btn btn-success"><i
-                                                class="fas fa-paper-plane"></i> Save
-                                            Changes</button>
+                                                        <button type="submit" id="createOrderBtn" class="btn btn-success"><i
+                                                                class="fas fa-paper-plane"></i> Save
+                                                            Changes</button>
 
-                                        <button type="reset" class="btn btn-warning" onclick="resetOrderForm()"><i
-                                                class="fas fa-times-circle"></i> Reset
-                                        </button>
+                                                        <button type="reset" class="btn btn-warning" onclick="resetOrderForm()"><i
+                                                                class="fas fa-times-circle"></i> Reset
+                                                        </button>
 
-                                    </div>
-                                </div>
+                                                    </div>
+                                                </div>
 
 
                                             </div>

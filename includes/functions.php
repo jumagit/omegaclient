@@ -270,7 +270,7 @@ function fetch_products()
 
     $sql = "SELECT products.product_id, products.product_name, products.product_image,
     products.categories_id, products.quantity, products.active, products.status, 
-     categories.categories_name,products.total_sales FROM products   
+     categories.categories_name,products.total_sales,products.price FROM products   
    INNER JOIN categories ON products.categories_id = categories.categories_id  
    WHERE  products.quantity>0 AND products.status = '1' AND  products.client_id = ".$_SESSION['client_id']."";
 
@@ -292,6 +292,8 @@ function fetch_products()
             $product_name = $trailRow[1];          
             $quantity = $trailRow[4];
             $status  =  $trailRow[6];
+            $price = $trailRow[9];
+            $sales_made = $num_sold * $price;
             if ($status === '1') {
                 $status = "Available";
             }else{
@@ -308,6 +310,7 @@ function fetch_products()
            <td>{$quantity}</td>                 
            <td>{$product_category}</td>
             <td><button class='btn btn-sm btn-danger'>{$num_sold} Sold</button></td> 
+            <td><button class='btn btn-sm btn-primary'>{$sales_made} Total Amount </button></td> 
            <td>{$status}</td>           
            <td><a onclick='pNotAvailable($product_id)' class='text-success'><i class='fa fa-battery-empty'></i> Not Available  </a></td>
            <td><a href='edit_products.php?edit={$product_id}' class='text-info'><i class='fa fa-edit'></i></a></td>
@@ -402,8 +405,10 @@ function fetch_orders()
 
         while ($trailRow = mysqli_fetch_array($result)) {
 
-            $count++;
-            $order_id =  $trailRow['order_id'];
+            $count++; 
+
+            $orderId =  $trailRow['order_id'];
+            $order_id = base64_encode($orderId);
             $order_date = $trailRow['order_date'];
             $customer_id = $trailRow['customer_id'];
 
@@ -411,21 +416,23 @@ function fetch_orders()
             $payment_status = $trailRow['payment_status'];
 
             if($payment_status == 1){
-                $payment_status = "<span class='btn btn-outline-success'>Full Payment</span>";
+                $payment_status = "<span class='btn btn-outline-warning'>NoPayment</span>";
             }else if($payment_status == 2){
-                $payment_status = "<span class='btn btn-outline-primary'>Advance Payment</span>";
+                $payment_status = "<span class='btn btn-outline-info'>Installment Payment</span>";
             }else{
-                $payment_status = "<span class='btn btn-outline-danger'>No Payment</span>"; 
+                $payment_status = "<span class='btn btn-outline-success'>Full Payment</span>"; 
             }
 
 
             //fetching total order items           
 
-            $countOrderItemSql = "SELECT count(*) FROM order_item WHERE order_id = $order_id";
-            $itemCountResult = query($countOrderItemSql);
-            while ($row = mysqli_fetch_array($itemCountResult)) {
-              $itemCountRow = $row[0];
-            }
+            $countOrderItemSql = "SELECT SUM(quantityTaken) FROM order_item WHERE order_id = '$orderId' ";
+            $itemCountResult = query($countOrderItemSql);  
+            while ($p = mysqli_fetch_array($itemCountResult)) {
+                $itemCountRow  = $p[0];   
+            }         
+           
+            
            
             $fetch_customer = "SELECT customers.customer_names FROM customers WHERE customers.customer_id = $customer_id";
             $fetchCustomer = query($fetch_customer);
@@ -440,17 +447,18 @@ function fetch_orders()
             $output .= "<tr>
            <td>{$count}</td>
            <td>{$order_date}</td>
-           <td><a href='customer_profile.php?id=$customer_id' class='btn btn-secondary'>{$customerName}</a></td>          
-           <td>{$itemCountRow}</td>           
+           <td><a href='customer_profile.php?id=$customer_id' class='btn btn-secondary'>{$customerName}</a></td>  
+           <td><button class='btn btn-info'>{$itemCountRow}</button></td>           
+                      
            <td>$payment_status</td>
            <td><a href='edit_order.php?id=$order_id' class='btn btn-outline-info'><i class='fa fa-edit'></i></a></td>
       
            <td><a href='invoice.php?id=$order_id'  class='btn btn-outline-success '><i class='fa fa-eye'></i></a></td>
-            <td><a type='button'   class='btn btn-outline-primary' data-toggle='modal' id='paymentOrderModalBtn' data-target='#paymentOrderModal' onclick='paymentOrder($order_id)'> <i class='fas fa-credit-card'></i> Pay</a></td>
+            <td><a type='button'   class='btn btn-outline-primary' data-toggle='modal' id='paymentOrderModalBtn' data-target='#paymentOrderModal' onclick='paymentOrder($orderId)'> <i class='fas fa-credit-card'></i> Pay</a></td>
           
-           <td><a onclick='printOrder($order_id)'  class='btn btn-outline-info '><i class='fa fa-print'></i></a></td>
-           <td><a onclick='sendMail($order_id)'  class='btn btn-outline-dark '><i class='fa fa-envelope'></i></a></td>
-           <td><a onclick='deleteOrder($order_id)' class='btn btn-outline-danger '><i class='fa fa-trash '></i></a></td>
+           <td><a onclick='printOrder($orderId)'  class='btn btn-outline-info '><i class='fa fa-print'></i></a></td>
+           <td><a onclick='sendMail($orderId)'  class='btn btn-outline-dark '><i class='fa fa-envelope'></i></a></td>
+           <td><a onclick='deleteOrder($orderId)' class='btn btn-outline-danger '><i class='fa fa-trash '></i></a></td>
            </tr>";
 
           

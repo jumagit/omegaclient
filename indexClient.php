@@ -17,24 +17,12 @@
     <div class="page-title-box">
         <div class="container-fluid">
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="state-information d-none d-sm-block">
-                        <div class="state-graph">
-                            <div id="header-chart-1"></div>
-                            <div class="info">Balance $ 2,317</div>
-                        </div>
-                        <div class="state-graph">
-                            <div id="header-chart-2"></div>
-                            <div class="info">Item Sold 1230</div>
-                        </div>
-                    </div>
+             <div class="row">
+                <div class="col-sm-12 text-center">
+                    
 
-                    <h4 class="page-title">Dashboard</h4>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">Hi, <span class="badge badge-danger"> <?php if(isset($_SESSION['fullName'])){echo $_SESSION['fullName'];} ?>  </span>  Welcome to Omega Dashboard</li>
-                    </ol>
-
+                    <h2 class="text-white"> <i class="fa fa-home"></i> Dashboard </h2>
+                    
                 </div>
             </div>
         </div>

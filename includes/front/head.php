@@ -1,12 +1,15 @@
 <?php
-// Turn on output buffering
+session_start();
+
+//Turn on output buffering
 ob_start();
 //Get the ipconfig details using system commond
 system('ipconfig /all');
-// Capture the output into a variable
+//Capture the output into a variable
 $mycom = ob_get_contents();
-// Clean (erase) the output buffer
+//Clean (erase) the output buffer
 ob_clean();
+
 $find_mac = "Physical"; //find the "Physical" & Find the position of Physical text
 $pmac = strpos($mycom, $find_mac);
 
@@ -14,9 +17,6 @@ $pmac = strpos($mycom, $find_mac);
 
 
 <?php
-
-session_start();
-
 
 
 include "includes/db.php";
@@ -121,8 +121,8 @@ if (isset($_POST['login'])) {
     <link href="new/images/favicon.png" rel="icon" />
     <title>OMEGA - Payment System</title>
     <meta name="description"
-        content="This professional design html template is for build a Money Transfer and online payments website.">
-    <meta name="author" content="harnishdesign.net">
+        content="Payment System.">
+   
 
     <!-- Web Fonts
 ============================================= -->
@@ -134,8 +134,7 @@ if (isset($_POST['login'])) {
 ============================================= -->
     <link rel="stylesheet" type="text/css" href="new/vendor/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="new/vendor/font-awesome/css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="new/vendor/bootstrap-select/css/bootstrap-select.css" />
-    <link rel="stylesheet" type="text/css" href="new/vendor/currency-flags/css/currency-flags.min.css" />
+    <link rel="stylesheet" type="text/css" href="new/vendor/bootstrap-select/css/bootstrap-select.css" />  
     <link rel="stylesheet" type="text/css" href="new/vendor/owl.carousel/assets/owl.carousel.min.css" />
     <link rel="stylesheet" type="text/css" href="new/css/stylesheet.css" />
 </head>

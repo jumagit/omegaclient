@@ -93,13 +93,13 @@
 
           $("#email_address").keyup(function() {
                var email = $(this).val();
-               if (vall == '') {
+               if (email == '') {
                     $("#email_address_error").html("<small class='h6 text-danger'> <i class='fas fa-times-circle text-danger'></i> Please enter your  Email Address</small>");
                } else {
                     $.ajax({
                          type: "POST",
                          url: "php_action/validation_all.php",
-                         data: {email:email},
+                         data:  "email=" + email,
                          success: function(msg) {  
                               $("#email_address_error").html(msg);
                          }
@@ -114,13 +114,13 @@
 
           $("#emailAddress").keyup(function() {
                var email= $(this).val();
-               if (vall == '') {
+               if (email == '') {
                     $("#emailAddress_error").html("<small class='h6 text-danger'> <i class='fas fa-times-circle text-danger'></i> Please enter your  Email Address</small>");
                } else {
                     $.ajax({
                          type: "POST",
                          url: "php_action/validation_all.php",
-                         data: {email:email},
+                         data: "email=" + email,
                          success: function(msg) {  
                               $("#emailAddress_error").html(msg);
                          }
@@ -137,7 +137,7 @@
 
 
           text_validate('customer_names', 10);
-         // text_validate('address', 10);
+          text_validate('customerContact', 10);
           text_validate('customerName', 10);
           any_text_validate('address',10);
 

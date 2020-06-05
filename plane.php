@@ -43,74 +43,83 @@
                     <div class="card m-b-20">
                         <div class="card-body">
 
-                            <h4 class="mt-0 header-title">Create Order</h4>
-                            <p class="text-muted m-b-30">Here you can create customer Order
-                            </p>
+                            <h4 class="mt-0 header-title">Profile</h4>
+                           
+                            <hr>
 
 
-                       <h4 class="mb-4">Personal Information</h4>
-                                                                <form id="personalInformation" method="post">
-                                                                    <div class="mb-3">
-                                                                        <div
-                                                                            class="custom-control custom-radio custom-control-inline">
-                                                                            <input id="male" name="profile"
-                                                                                class="custom-control-input" checked=""
-                                                                                required type="radio">
-                                                                            <label class="custom-control-label"
-                                                                                for="male">Male</label>
-                                                                        </div>
-                                                                        <div
-                                                                            class="custom-control custom-radio custom-control-inline">
-                                                                            <input id="female" name="profile"
-                                                                                class="custom-control-input" required
-                                                                                type="radio">
-                                                                            <label class="custom-control-label"
-                                                                                for="female">Female</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="fullName">Full Name</label>
-                                                                        <input type="text" value="Johne Cary"
-                                                                            class="form-control"
-                                                                            data-bv-field="fullName" id="fullName"
-                                                                            required placeholder="Full Name">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="mobileNumber">Mobile Number</label>
-                                                                        <input type="text" value="9898989898"
-                                                                            class="form-control"
-                                                                            data-bv-field="mobilenumber"
-                                                                            id="mobileNumber" required
-                                                                            placeholder="Mobile Number">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="emailID">Email ID</label>
-                                                                        <input type="text"
-                                                                            value="jhonecary2018@gmail.com"
-                                                                            class="form-control" data-bv-field="emailid"
-                                                                            id="emailID" required
-                                                                            placeholder="Email ID">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="birthDate">Date of Birth</label>
-                                                                        <input id="birthDate" value="06-09-2002"
-                                                                            type="text" class="form-control" required
-                                                                            placeholder="Date of Birth">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="inputCountry">Country</label>
-                                                                        <select class="custom-select" id="inputCountry"
-                                                                            name="country_id">
-                                                                            <option value=""> --- Please Select ---
-                                                                            </option>
-                                                                            <option value="244">Aaland Islands</option>
-                                                                            <option value="1">Afghanistan</option>
-                                                                            <option value="2">Albania</option>
-                                                                            <option value="3">Algeria</option>
+                            <div class="row"> 
+        
+        <!-- Left Panel
+        ============================================= -->
+        <div class="col-lg-3"> 
 
-                                                                        </select>
-                                                                    </div>
-                                                                </form>
+            <!-- Need Help?
+          =============================== -->
+          <div class="bg-light shadow-sm rounded text-center p-3 mb-4">
+            <div class="text-17 text-light my-3"><i class="fas fa-comments"></i></div>
+            <h3 class="text-3 font-weight-400 my-4">Need Help?</h3>
+            <p class="text-muted opacity-8 mb-4">Have questions or concerns regrading your account?<br>
+              Our experts are here to help!.</p>
+            <a href="#" class="btn btn-primary btn-block">Chate with Us</a> </div>
+          <!-- Need Help? End --> 
+
+
+            <!-- Available Balance
+          =============================== -->
+          <div class="bg-light shadow-sm rounded text-center p-3 mb-4">
+            <div class="text-17 text-light my-3"><i class="fas fa-wallet"></i></div>
+            <h3 class="text-9 font-weight-400">$2956.00</h3>
+            <p class="mb-2 text-muted opacity-8">Available Balance</p>
+            <hr class="mx-n3">
+            <div class="d-flex"><a href="withdraw-money.html" class="btn-link mr-auto">Withdraw</a> <a href="deposit-money.html" class="btn-link ml-auto">Deposit</a></div>
+          </div>
+          <!-- Available Balance End --> 
+          
+          <!-- Profile Details
+          =============================== -->
+          <div class="bg-light shadow-sm rounded text-center p-3 mb-4">
+            <div class="profile-thumb mt-3 mb-4"> <img class="rounded-circle" src="assets/images/logo.png" width="120" alt="">
+             
+                <input type="file" class="custom-file-input" id="customFile">
+              </div>
+            </div>
+            <p class="text-3 font-weight-500 mb-2">Hello, Smith Rhodes</p>
+            <p class="mb-2"><a href="profile.html" class="text-5 text-light" data-toggle="tooltip" title="Edit Profile"><i class="fas fa-edit"></i></a></p>
+          </div>
+          
+          
+        
+         
+        <div class="col-lg-9">
+          
+          <!-- Personal Details ============================================= -->
+          <div class="bg-light shadow-sm rounded p-4 mb-4">
+            <h3 class="text-5 font-weight-400 mb-3">Personal Details <a href="#edit-personal-details" data-toggle="modal" class="float-right text-1 text-uppercase text-info btn-link"><i class="fas fa-edit mr-1"></i></a></h3>
+            <div class="row">
+              <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Name</p>
+              <p class="col-sm-9">Smith Rhodes</p>
+            </div>
+            <div class="row">
+              <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Date of Birth</p>
+              <p class="col-sm-9">12-09-1982</p>
+            </div>
+            <div class="row">
+              <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Address</p>
+              <p class="col-sm-9">4th Floor, Plot No.22, Above Public Park, 145 Murphy Canyon Rd,  Suite 100-18,<br>
+                San Ditego,<br>
+                California - 22434,<br>
+                United States.</p>
+            </div>
+          </div>
+         
+         
+    
+        </div>
+      </div>
+
+
+                      
 
 
                         </div>

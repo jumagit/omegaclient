@@ -7,25 +7,12 @@
 <div class="wrapper">
     <div class="page-title-box">
         <div class="container-fluid">
+           <div class="row">
+                <div class="col-sm-12 text-center">
+                    
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="state-information d-none d-sm-block">
-                        <div class="state-graph">
-                            <div id="header-chart-1"></div>
-                            <div class="info">Balance $ 2,317</div>
-                        </div>
-                        <div class="state-graph">
-                            <div id="header-chart-2"></div>
-                            <div class="info">Item Sold 1230</div>
-                        </div>
-                    </div>
-
-                    <h4 class="page-title">Orders</h4>
-                    <ol class="breadcrumb">
-
-                        <li class="breadcrumb-item active">Orders</li>
-                    </ol>
+                    <h2 class="">Orders</h2>
+                    
                 </div>
             </div>
         </div>

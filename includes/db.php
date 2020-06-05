@@ -431,8 +431,9 @@ function orders_count(){
          $result = query($sql);
          while ($row = mysqli_fetch_array($result)) {
               $id = $row[0];
+              return $id;
           } 
-      return $id;
+     
 }
 
 

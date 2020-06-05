@@ -92,16 +92,16 @@ if ($_REQUEST['t'] == 'true') {
       $sql1 = "INSERT INTO track_payments (client_name, amount_paid, balance, order_id) VALUES ('$clientName','$paid','$dueValue','$order_id')";
     $sql1 = query($sql1);
 
-  
+  //inserting into trackings
      writeLog("Made an order with Invoice Number {$invoice_number}", $_SESSION['username'], "SUCCESS");
   
-    // echo clean(clean($_POST['productName'];
+    
     $orderItemStatus = false;
 
     for ($x = 0; $x < count($_POST['product_name']); $x++) {
         $updateProductQuantitySql = "SELECT products.quantity,products.total_sales FROM products
 		 WHERE products.product_id = " . $_POST['product_name'][$x] . "  ";
-        $updateProductQuantityData = $connection->query($updateProductQuantitySql);
+        $updateProductQuantityData = query($updateProductQuantitySql);
 
         while ($updateProductQuantityResult = mysqli_fetch_array($updateProductQuantityData)) {
             $updateQuantity[$x] = $updateProductQuantityResult[0] - $_POST['quantityTaken'][$x];
@@ -115,8 +115,8 @@ if ($_REQUEST['t'] == 'true') {
             //echo $totalPerProduct;
 
             // add into order_item
-            $orderItemSql = "INSERT INTO order_item (order_id, product_id, quantityTaken ,total, order_item_status)
-				VALUES ('$order_id', '" . $_POST['product_name'][$x] . "', '" . $_POST['quantityTaken'][$x] . "', $totalPerProduct,1)";
+     $orderItemSql = "INSERT INTO order_item (order_id, product_id, quantityTaken ,total, order_item_status)
+		VALUES ('$order_id', '" . $_POST['product_name'][$x] . "', '" . $_POST['quantityTaken'][$x] . "', $totalPerProduct,1)";
 
             $query = query($orderItemSql);
 
