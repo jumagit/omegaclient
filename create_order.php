@@ -9,23 +9,11 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="state-information d-none d-sm-block">
-                        <div class="state-graph">
-                            <div id="header-chart-1"></div>
-                            <div class="info">Balance $ 2,317</div>
-                        </div>
-                        <div class="state-graph">
-                            <div id="header-chart-2"></div>
-                            <div class="info">Item Sold 1230</div>
-                        </div>
-                    </div>
+                <div class="col-sm-12 text-center">
+                    
 
-                    <h4 class="page-title">Create Order</h4>
-                    <ol class="breadcrumb">
-
-                        <li class="breadcrumb-item active">Add Order</li>
-                    </ol>
+                    <h2 class=""><i class="fa fa-plus-circle"></i> Create Order</h2>
+                    
                 </div>
             </div>
         </div>
@@ -56,7 +44,7 @@
 
                                     <div class="card ">
 
-                                        <div class="bg-dark">
+                                        <div class="bg-info">
 
                                             <h4 class="text-center text-white"><i class="mdi mdi-account-box"></i>
                                                 Customer Information</h4>
@@ -168,7 +156,7 @@
 
                                     <div class="card ">
 
-                                        <div class="bg-dark">
+                                        <div class="bg-info">
 
                                             <h4 class="text-center text-white"><i class="mdi mdi-cart-plus"></i> Order
                                                 Section</h4>
@@ -358,7 +346,7 @@
 
                                         <div class="card ">
 
-                                            <div class="bg-dark">
+                                            <div class="bg-info">
 
                                                 <h4 class="text-center text-white"> <i
                                                         class="mdi mdi-credit-card-settings"></i> Payment Section</h4>

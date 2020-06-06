@@ -141,7 +141,7 @@
      <!-- end topbar-main -->
 
      <!-- MENU Start -->
-     <div class="navbar-custom">
+     <div class="navbar-custom" style="border-bottom: 4px solid #EF5552;">
          <div class="container-fluid">
              <div id="navigation">
                  <!-- Navigation Menu-->

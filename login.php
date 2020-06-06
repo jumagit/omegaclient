@@ -7,7 +7,7 @@
       <p class="lead text-center">Your login information is safe with us.</p>
        <?php if(isset($doLoginFeedback)){ echo $doLoginFeedback;}?>
 
-       <p class="mb-2  text-center" id="clock"></p>
+       <p class="mb-2 d-block badge badge-danger p-2  text-center" id="clock"></p>
       <div class="bg-light shadow-md rounded p-4 mx-2">
       <form  method="post" action="">
           <div class="form-group">
@@ -25,11 +25,11 @@
               <label class="custom-control-label" for="remember-me">Remember Me</label>
             </div>
             </div>
-          <div class="col-sm text-right"><a class="btn-link" href="#">Forgot Password ?</a></div>
+          <div class="col-sm text-right"><a class="btn-link" href="forgot_password.php">Forgot Password ?</a></div>
         </div>
           <button class="btn btn-primary btn-block my-4" name="login" type="submit">Sign In</button>
         </form>
-      <p class="text-3 text-muted text-center mb-0">Don't have an account? <a class="btn-link" href="signup-3.html">Sign Up</a></p>
+     <!--  <p class="text-3 text-muted text-center mb-0">Don't have an account? <a class="btn-link" href="signup-3.html">Sign Up</a></p> -->
     </div>
     </div>
   <!-- Content end -->

@@ -59,7 +59,7 @@
 
 //end customers
 
-     function paymentOrder(orderId = null) {
+   paymentOrder =  function(orderId) {
           if (orderId) {
 
                $("#orderDate").datepicker();
