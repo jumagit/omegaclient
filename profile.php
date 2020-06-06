@@ -12,7 +12,7 @@
                 <div class="col-sm-12 text-center">
                     
 
-                    <h2 class=""> <i class="fa fa-user"></i> Profile</h2>
+                    <h2 class=""> <i class="fa fa-user-circle"></i> Profile</h2>
                     
                 </div>
             </div>
@@ -35,9 +35,10 @@
                   $email = $result['email'];
                   $location = $result['location'];
                   $Mobile = $result['mobile'];
+                  $profilePicture  = substr($result['profileImage'], 3);
             }
 
-            $connection->close();
+           // 
 
 
 
@@ -63,19 +64,33 @@
                                  <!-- Profile Details -->
                                   <div class=" card-body  shadow-sm rounded text-center p-3 mb-4">
                                      <h4 class="text-3 font-weight-500 mb-2">Hello, <span class="badge badge-danger"> <?php echo $_SESSION['fullName'] ?></span></h4>
-                                    <p class="mb-2"><a href="profile.html" class="text-5 text-light" data-toggle="tooltip" title="Edit Profile"><i class="fas fa-edit"></i></a></p>
-                                    <div class="profile-thumb mt-3 mb-4"> <img class="rounded-circle" src="assets/images/logo.png" width="120" alt="">
+                                    
+                                    <div class="profile-thumb mt-3 mb-4"> <img class="rounded-circle" 
+                                      src="<?php echo(isset($profilePicture)) ?  $profilePicture : 'No Profile Pic' ?>" width="120" alt="ProfileImage">
+
+                                      <form action="#" method="POST" id="changeProfilePicture" class="mt-2" enctype="multipart/form-data">
+                                          <div class="form-group">
+                                            
+                                              <div>
+                                                  <input type="file"  name="ProfileImage" required />
+                                                  <input type="hidden" name="pic_client_id"  value="<?php echo $client_id; ?>">
+                                              </div>
+                                          </div>
+                                            <p class="mb-2"><button  class="text-5 text-light btn btn-block btn-info"><i class="fas fa-image"></i> Update</button></p>
+                                      </form>
+                                        
                                      
-                                        <input type="file" class="custom-file-input" id="customFile">
+                                        
                                       </div>
+                                    
                                     </div>
 
 
                                      <!-- Available Balance -->
                                   <div class=" card-body bg-info shadow-sm rounded text-center p-3 mb-4">
-                                    <div class="text-17 text-light my-3"><i class="fas fa-wallet fa-2x"></i></div>
-                                    <h3 class="text-9 font-weight-400">UGX 2956.00</h3>
-                                    <p class="mb-2 h5">Available Balance</p>
+                                    <div class="text-17 text-dark my-3"><i class="fas fa-wallet fa-3x"></i></div>
+                                    <h3 class="text-9 font-weight-400">UGX <?php total_sales(); ?></h3>
+                                    <p class="mb-2 h6">Total Sales</p>
                                     <hr class="mx-n3">
                                     <a href="#" class="btn btn-danger btn-block">Details</a> 
                                   </div>
@@ -92,7 +107,7 @@
                                   
                                   <!-- Personal Details ============================================= -->
                                   <div class=" card shadow-sm rounded p-4 mb-4">
-                                    <h4 class="text-5 font-weight-400 mb-3">Personal Details <button class="float-right btn btn-info"><i class="fas fa-edit"></i></button></h4>
+                                    <h4 class="text-5 font-weight-400 mb-3"><i class="mdi mdi-account-circle"></i> Account Details <button class="float-right btn btn-info"><i class="fas fa-edit"></i></button></h4>
                                     <hr>
                                     <div class="row">
                                       <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Name</p>
@@ -124,7 +139,7 @@
                                 <div class="card m-b-20 ">
                                 <div class="card-body">
 
-                                    <h4 class="mt-0 header-title">Change Password</h4>
+                                    <h4 class="mt-0 "><i class="mdi mdi-lock"></i> Change Password</h4>
                                     <hr>
                                     <p class="text-muted m-b-30">Here you can change your Password
                                     </p>
@@ -164,9 +179,9 @@
 
 
                                 <div class="form-group ">
-                                    <input type="hidden" name="puser_id" id="puser_id"
+                                    <input type="hidden" name="pclient_id" id="pclient_id"
                                         value="<?php echo $client_id; ?>" />
-                                    <button type="submit" class="btn btn-block btn-primary waves-effect waves-light">
+                                    <button type="submit" class="btn btn-block btn-lg btn-danger waves-effect waves-light">
                                         <i class="mdi mdi-content-save"></i> Change Password
                                     </button>
                                 </div>
@@ -184,7 +199,7 @@
                     <div class="card m-b-20 ">
                         <div class="card-body">
 
-                            <h4 class="mt-0 header-title">Change Username</h4>
+                            <h4 class="mt-0 "><i class="fas fa-user"></i> Change Username</h4>
                             <hr>
                             <p class="text-muted m-b-30">Here you view can Change your Username
                             </p>
@@ -206,7 +221,7 @@
 
                                 <div class="form-group ">
 
-                                    <button type="submit" class="btn btn-block btn-primary waves-effect waves-light">
+                                    <button type="submit" class="btn btn-block btn-info btn-lg waves-effect waves-light">
                                         <i class="mdi mdi-content-save"></i> Change Username
                                     </button>
                                 </div>
@@ -218,7 +233,7 @@
                         </div>
                     </div>
                                  
-                                 
+                                 <?php $connection->close(); ?>
                             
                                 </div>
                               </div>

@@ -397,6 +397,57 @@
           });
      }
 
+     function deleteCategory(id) {
+          var id = id;
+          swal({
+               title: "Are you sure?",
+               text: "Okay to delete this Category",
+               type: "info",
+               padding: 20,
+               showCancelButton: true,
+               confirmButtonText: "Yes",
+               cancelButtonText: "No, cancel!",
+               confirmButtonClass: "btn btn-success",
+               cancelButtonClass: "btn btn-danger m-l-10",
+               buttonsStyling: false
+          }).then(willSave => {
+               if (willSave) {
+                    $.ajax({
+                         type: "GET",
+                         dataType: "json",
+                         url: "php_action/create_categories.php?t=delete&id=" + id,
+
+                         success: function(result) {
+                              console.log(result);
+                              if (result.status) {
+                                   swal({
+                                        title: "Good job!",
+                                        padding: 20,
+                                        text: " While you wait a Category has been deleted!!",
+                                        type: "success"
+                                   });
+
+                                   setTimeout(function() {
+                                        window.location.reload();
+                                   }, 1000);
+                              } else {
+                                   swal({
+                                        title: "Oops!",
+                                        padding: 20,
+                                        text: result.msg + "..please try again!",
+                                        type: "warning"
+                                   });
+                              }
+                         },
+                         error: function(jqXHR) {
+                              console.log(jqXHR);
+                         }
+                    });
+               }
+          });
+     }
+
+
      function makeAvailable(id) {
           var id = id;
           swal({
@@ -812,6 +863,65 @@
      }
 
      //user section
+
+     //change profile Image
+
+      $(document).on("submit", "#changeProfilePicture", function(e) {
+          e.preventDefault();
+
+          var formData = new FormData(this);
+
+          swal({
+               title: "Are you sure?",
+               text: "Okay to change Profile Picture",
+               type: "info",
+               padding: 20,
+               showCancelButton: true,
+               confirmButtonText: "Yes",
+               cancelButtonText: "No, cancel!",
+               confirmButtonClass: "btn btn-success",
+               cancelButtonClass: "btn btn-danger m-l-10",
+               buttonsStyling: false
+          }).then(willSave => {
+               if (willSave) {
+                    $.ajax({
+                         type: "POST",
+                         dataType: "json",
+                         url: "php_action/change_profileImage.php?t=true",
+                         data: formData,
+                         success: function(result) {
+                              //console.log(result);
+                              if (result.status) {
+                                   swal({
+                                        title: "Good job!",
+                                        padding: 20,
+                                        text: "Good Job! Profile Image Changed Successfully!",
+                                        type: "success"
+                                   });
+
+                                   setTimeout(function() {
+                                        window.location.reload();
+                                   }, 1000);
+                              } else {
+                                   swal({
+                                        title: "Oops!",
+                                        padding: 20,
+                                        text: result.msg + "..please try again!",
+                                        type: "warning"
+                                   });
+                              }
+                         },
+                         error: function(jqXHR) {
+                              console.log(jqXHR);
+                         },
+                         cache: false,
+                         contentType: false,
+                         processData: false
+                    });
+               }
+          });
+     });
+
 
      //changing username
 

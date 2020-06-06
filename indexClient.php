@@ -63,7 +63,7 @@
                                                 <div class="text-center">
                                                      <h1 class="mb-3 mt-0"><?php count_anything('orders'); ?></h1>
                                                     <h4 class="text-uppercase mt-0 text-white-20">Orders</h4>
-                                                    <span class="ml-2"><a href="products.php" class="text-white">More
+                                                    <span class="ml-2"><a href="orders.php" class="text-white">More
                                                             Details..</a></span>
                                                 </div>
                                             </div>
@@ -84,7 +84,7 @@
                                                 <div class="text-center">
                                                      <h1 class="mb-3 mt-0"><?php count_anything('categories'); ?></h1>
                                                     <h4 class="text-uppercase mt-0 text-white-20">Categories</h4>
-                                                    <span class="ml-2"><a href="products.php" class="text-white">More
+                                                    <span class="ml-2"><a href="categories.php" class="text-white">More
                                                             Details..</a></span>
                                                 </div>
                                             </div>
@@ -103,7 +103,7 @@
                                                 <div class="text-center">
                                                      <h1 class="mb-3 mt-0"><?php count_anything('customers'); ?></h1>
                                                     <h4 class="text-uppercase mt-0 text-white-20">Customers</h4>
-                                                    <span class="ml-2"><a href="products.php" class="text-white">More
+                                                    <span class="ml-2"><a href="customers.php" class="text-white">More
                                                             Details..</a></span>
                                                 </div>
                                             </div>

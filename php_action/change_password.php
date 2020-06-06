@@ -11,9 +11,9 @@ if ($_REQUEST['t'] == 'true') {
     $currentPassword = md5(clean($_POST['currentPassword']));
     $newPassword = md5(clean($_POST['newPassword']));
     $confirmPassword = md5(clean($_POST['confirmPassword']));
-    $client_id = clean($_POST['puser_id']);
+    $client_id = clean($_POST['pclient_id']);
 
-    $sql = "SELECT * FROM clients WHERE client_id = {$client_id}";
+    $sql = "SELECT * FROM clients WHERE client_id = '$client_id' ";
     $query = query($sql);
     $result = $query->fetch_assoc();
 
@@ -21,7 +21,7 @@ if ($_REQUEST['t'] == 'true') {
 
         if ($newPassword == $confirmPassword) {
 
-            $updateSql = "UPDATE clients SET password = '$newPassword' WHERE client_id = {$client_id}";
+            $updateSql = "UPDATE clients SET password = '$newPassword' WHERE client_id = '$client_id' ";
             $query = query($updateSql);
             if ($query) {
                 $feed_back = array('status' => true, 'msg' => 'success');

@@ -6,7 +6,7 @@
 
 <?php
 
-$product_id = $_GET['edit'];
+$product_id = base64_decode($_GET['edit']);
 
 $sql = query("SELECT * FROM products WHERE product_id = '$product_id' ");
 

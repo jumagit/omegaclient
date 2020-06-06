@@ -201,14 +201,17 @@ function fetch_categories()
                 $categories_status = "<i class='fa fa-battery-empty'></i> Unavailable";
             }
 
+            $categoriesId = base64_encode($categories_id);
+
+
             $output .= "<tr>
            <td>{$count}</td>
            <td>{$categories_name}</td>
            <td>{$categories_status}</td>
            <td><a onclick='makeAvailable($categories_id)' class='text-info'><i class='fa fa-battery-full'></i> Available  </a></td>
            <td><a onclick='notAvailable($categories_id)' class='text-success'><i class='fa fa-battery-empty'></i> Not Available  </a></td>
-           <td><a href='edit_categories.php?edit={$categories_id}' ><i class='fa fa-edit'></i></a></td>
-           <td><a onclick='deleteBrand($categories_id)' class='text-danger'><i class='fa fa-trash'></i></a></td>
+           <td><a href='edit_categories.php?edit={$categoriesId}' class='text-info'><i class='fa fa-edit'></i></a></td>
+           <td><a onclick='deleteCategory($categories_id)' class='text-danger'><i class='fa fa-trash'></i></a></td>
            </tr>";
 
         }
@@ -300,6 +303,9 @@ function fetch_products()
                 $status = "Not Available"; 
 
             }
+
+
+            $prod_id = base64_encode($product_id);
            
            
 
@@ -313,7 +319,7 @@ function fetch_products()
             <td><button class='btn btn-sm btn-primary'>{$sales_made} Total Amount </button></td> 
            <td>{$status}</td>           
            <td><a onclick='pNotAvailable($product_id)' class='text-success'><i class='fa fa-battery-empty'></i> Not Available  </a></td>
-           <td><a href='edit_products.php?edit={$product_id}' class='text-info'><i class='fa fa-edit'></i></a></td>
+           <td><a href='edit_products.php?edit={$prod_id}' class='text-info'><i class='fa fa-edit'></i></a></td>
            <td><a onclick='deleteProduct($product_id)' class='text-danger'><i class='fa fa-trash'></i></a></td>
            </tr>";
 

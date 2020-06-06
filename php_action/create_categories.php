@@ -52,3 +52,20 @@ if ($_REQUEST['t'] == 'true') {
     $connection->close();
 
 } // /if $_POST
+
+
+
+if ($_REQUEST['t'] == 'delete') {
+    $id = $_GET['id'];
+    $query = query("DELETE FROM categories WHERE categories_id='{$id}'");
+
+    $products =query("DELETE FROM products WHERE categories_id = '{$id}' ");
+    if ($query && $products) {
+        $feed_back = array('status' => true, 'msg' => 'success');
+    } else {
+        $feed_back = array('status' => false, 'msg' => mysqli_error($connection));
+    }
+    $dataX = json_encode($feed_back);
+    header('Content-Type: application/json');
+    echo $dataX;
+}

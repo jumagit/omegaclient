@@ -13,9 +13,9 @@ if ($_REQUEST['t'] == 'true') {
     }
 
     $username = clean($_POST['username']);
-    $userId = clean($_POST['user_id']);
+    $clientID = clean($_POST['client_id']);
 
-    $sql = "UPDATE users SET username = '$username' WHERE user_id = {$userId}";
+    $sql = "UPDATE clients SET username = '$username' WHERE client_id = '$clientID' ";
 
     $query = query($sql);
     if ($query) {

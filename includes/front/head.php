@@ -60,6 +60,8 @@ if (isset($_POST['login'])) {
                     $_SESSION['fullName'] = $row['fullName'];
                     $_SESSION['email'] = $row['email'];                    
                     $_SESSION['mobile'] = $row['mobile'];
+                    $pp  = $row['profileImage'];
+                    $_SESSION['profileImage'] = substr($pp, 3);
                   
 
                     session_write_close();

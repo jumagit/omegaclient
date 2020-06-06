@@ -12,7 +12,7 @@
                 <div class="col-sm-12 text-center">
                     
 
-                    <h2 class="">Products</h2>
+                    <h2 class=""><i class="fa fa-th"></i> Products</h2>
                     
                 </div>
             </div>

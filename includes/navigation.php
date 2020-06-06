@@ -55,42 +55,7 @@
                              </a>
                          </div>
                      </li>
-                     <li class="dropdown notification-list">
-                         <div class="dropdown notification-list">
-                             <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user waves-light"
-                                 data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
-                                 aria-expanded="false">
-                                 <img src="assets/images/users/user-4.jpg" alt="user" class="rounded-circle">
-                             </a>
-                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                 <!-- item-->
-
-                                 <?php  if(isset($_SESSION['user_id']) ){ ?>
-                                 <a class="dropdown-item" href="activity_logs.php"><i
-                                         class="mdi mdi-lock-open-outline m-r-5"></i> History</a>
-
-                                 <?php }else{ ?>
-
-                                 <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5"></i>
-                                     Happenings</a>
-
-
-                                 <?php } ?>
-                                 <a class="dropdown-item" href="profile.php"><i
-                                         class="mdi mdi-account-circle m-r-5"></i> Profile</a>
-
-
-
-                                 <a class="dropdown-item d-block" href="settings.php"><i
-                                         class="mdi mdi-settings m-r-5"></i> Settings</a>
-
-
-                                 <div class="dropdown-divider"></div>
-                                 <a class="dropdown-item text-danger" href="php_action/general_logout.php"><i
-                                         class="mdi mdi-power text-danger"></i> Logout</a>
-                             </div>
-                         </div>
-                     </li>
+                    
 
                      <li class="menu-item list-inline-item">
                          <!-- Mobile menu toggle-->
@@ -126,6 +91,40 @@
                                        <button class="btn btn-danger">Total UGX <?php total_sales(); ?></button> 
                                    
                          </h6>
+                     </li>
+
+                      <li class="dropdown notification-list">
+                         <div class="dropdown notification-list">
+                             <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user waves-light"
+                                 data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                                 aria-expanded="false">
+                                 <img src="<?php echo $_SESSION['profileImage']; ?>" alt="user" class="rounded-circle">
+                             </a>
+                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                 <!-- item-->
+
+                                 <?php  if(isset($_SESSION['user_id']) ){ ?>
+                                 <a class="dropdown-item" href="activity_logs.php"><i
+                                         class="mdi mdi-lock-open-outline m-r-5"></i> History</a>
+
+                                 <?php }else{ ?>
+
+                                 <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5"></i>
+                                     Happenings</a>
+
+
+                                 <?php } ?>
+                                 <a class="dropdown-item" href="profile.php"><i
+                                         class="mdi mdi-account-circle m-r-5"></i> Profile</a>
+
+
+
+
+                                 <div class="dropdown-divider"></div>
+                                 <a class="dropdown-item text-danger" href="php_action/general_logout.php"><i
+                                         class="mdi mdi-power text-danger"></i> Logout</a>
+                             </div>
+                         </div>
                      </li>
 
                  </ul>

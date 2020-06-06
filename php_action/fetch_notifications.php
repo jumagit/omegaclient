@@ -28,9 +28,9 @@ if(isset($_POST["view"]))
   {
    $output .= '
 
-   <a href="javascript:void(0);" class="dropdown-item notify-item active">
-        <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-     <p class="notify-details"><b>'.$row['username'].'</b><span class="text-muted">'.$row['activity'].'</span></p>
+   <a href="javascript:void(0);" class="dropdown-item notify-item  active"style="border-bottom:1px solid lightgray;">
+        <div class="notify-icon bg-info text-white"><i class="mdi mdi-image"></i></div>
+     <p class="notify-details"><b>'.$row['username'].'</b><span class="text-dark">'.$row['activity'].'</span></p>
   </a>
 
    ';

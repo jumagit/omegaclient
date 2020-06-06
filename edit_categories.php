@@ -5,7 +5,9 @@
 
 <?php 
 
-$categories_id = $_GET['edit'];
+$cat_id = $_GET['edit'];
+
+$categories_id = base64_decode($cat_id);
 
 $sql = query("SELECT * FROM categories WHERE categories_id = '$categories_id' ");
 
