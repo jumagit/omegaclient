@@ -38,7 +38,7 @@
                         <div class="row ">
 
                             <div class="col-sm-3">
-                                <div class="card rounded m-2  mini-stat position-relative " style="background-color:red">
+                                <div class="card rounded m-2  mini-stat position-relative " style="background-color:#240B3A">
                                     <div class="card-body">
                                         <div class="mini-stat-desc">                                           
                                             <div class="text-white">                                              
@@ -56,7 +56,7 @@
                             </div>
 
                               <div class="col-sm-3">
-                                <div class="card rounded m-2  mini-stat position-relative " style="background-color:blue">
+                                <div class="card rounded m-2  mini-stat position-relative " style="background-color:#F86F15">
                                     <div class="card-body">
                                         <div class="mini-stat-desc">                                           
                                             <div class="text-white">                                              
@@ -77,7 +77,7 @@
 
 
                              <div class="col-sm-3">
-                                <div class="card rounded m-2  mini-stat position-relative " style="background-color:black">
+                                <div class="card rounded m-2  mini-stat position-relative " style="background-color:#3F1D0B">
                                     <div class="card-body">
                                         <div class="mini-stat-desc">                                           
                                             <div class="text-white">                                              
@@ -96,7 +96,7 @@
 
 
                              <div class="col-sm-3">
-                                <div class="card rounded m-2  mini-stat position-relative " style="background-color:purple">
+                                <div class="card rounded m-2  mini-stat position-relative " style="background-color:#002F47">
                                     <div class="card-body">
                                         <div class="mini-stat-desc">                                           
                                             <div class="text-white">                                              
@@ -164,7 +164,7 @@
                                     
                                     </ul>
 
-                                    <canvas id="clientSales" height="230"></canvas>
+                                    <canvas id="customersC" height="230"></canvas>
 
                                 </div>
 

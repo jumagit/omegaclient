@@ -19,7 +19,7 @@
              <div class="menu-extras topbar-custom">
 
                  <ul class="navbar-right d-flex list-inline float-right mb-0">
-                     <li class="dropdown notification-list d-none d-sm-block">
+                     <!-- <li class="dropdown notification-list d-none d-sm-block">
                          <form role="search" class="app-search">
                              <div class="form-group mb-0">
                                  <input type="text" class="form-control" placeholder="Search..">
@@ -27,6 +27,9 @@
                              </div>
                          </form>
                      </li>
+ -->
+
+                     
 
 
 
@@ -38,10 +41,10 @@
                              <i class="mdi mdi-bell noti-icon"></i>
                              <span class="badge badge-pill badge-info noti-icon-badge" id="count"></span>
                          </a>
-                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
+                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg bg-danger">
                              <!-- item-->
-                             <h6 class="dropdown-item-text">
-                                 Notifications (37)
+                             <h6 class="dropdown-item-text text-center text-white">
+                                 Notifications  
                              </h6>
                              <div class="pre-scrollable notification-item-list" id="dropdown-menu">
 
@@ -108,14 +111,20 @@
                              <?php 
 
                                     if (isset($_SESSION['client_id'])) {
-                                       echo '<span class="btn btn-info">'.$_SESSION['fullName'].'<span>';
-                                    }else if(isset($_SESSION['user_id'])){
-                                         echo '<span class="btn btn-info">'.$_SESSION['fullName'].'<span>';
-                                    }else{
-                                         echo '<span class="btn btn-info">No User<span>';
+                                       echo '<span class="btn btn-sm btn-info"><i class="fa fa-user"></i> '.$_SESSION['fullName'].'<span>';
                                     }
 
                                      ?>
+                         </h6>
+                     </li>
+
+
+                      <li class="dropdown-item-text pt-2">
+                         <h6 class="text-white">
+
+                            
+                                       <button class="btn btn-danger">Total UGX <?php total_sales(); ?></button> 
+                                   
                          </h6>
                      </li>
 

@@ -455,7 +455,7 @@ function fetch_orders()
       
            <td><a href='invoice.php?id=$order_id'  class='btn btn-outline-success '><i class='fa fa-eye'></i></a></td>
             <td><a type='button'   class='btn btn-outline-primary' data-toggle='modal' id='paymentOrderModalBtn' data-target='#paymentOrderModal' onclick='paymentOrder($order_id)'> <i class='fas fa-credit-card'></i> Pay</a></td>
-          <td><a href='orders_report.php?id=$orderId' target='_blank' class='btn btn-outline-info '><i class='fa fa-print'></i></a></td>
+          <td><a href='orders_report.php?id=$order_id' target='_blank' class='btn btn-outline-info '><i class='fa fa-print'></i></a></td>
            
            <td><a onclick='sendMail($orderId)'  class='btn btn-outline-dark '><i class='fa fa-envelope'></i></a></td>
            <td><a onclick='deleteOrder($orderId)' class='btn btn-outline-danger '><i class='fa fa-trash '></i></a></td>
@@ -519,3 +519,14 @@ $created_on = f_date($trailRow[5]);
 
     return $output;
 }
+
+
+
+ function total_sales(){
+
+    $total =query("SELECT SUM(grand_total) FROM orders WHERE client_id = '".$_SESSION['client_id']."' ");
+    while ($e = mysqli_fetch_array($total)) {
+        $grand += $e[0];
+        echo $grand;
+    }
+ }

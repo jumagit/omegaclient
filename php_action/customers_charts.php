@@ -8,7 +8,7 @@ header('Content-Type: application/json');
 
 
 
-$sql = "SELECT DAY(order_date) AS day, COUNT(*) as total FROM orders WHERE client_id  = '{$_SESSION['client_id']}' AND order_date BETWEEN '2020-05-1' AND '2020-06-12' GROUP BY DAY(order_date) LIMIT 10";
+$sql = "SELECT DATE(created_at) AS day, COUNT(*) as total FROM customers WHERE client_id  = '{$_SESSION['client_id']}' AND created_at BETWEEN '2020-05-1' AND '2020-06-12' GROUP BY DATE(created_at) LIMIT 10";
 
 
 

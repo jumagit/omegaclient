@@ -1,4 +1,4 @@
-     <footer class="footer ">
+     <footer class="footer " style="background-image: linear-gradient(90deg, #002F47, #002F47);">
          <div class="container-fluid">
 
              <div class="row">
@@ -6,7 +6,7 @@
                      
                      <div class="d-flex " style="margin-left:35%">
 
-                         <div class="align-items-start pr-4"><img src="assets/images/logo.png" width="100px"
+                         <div class="align-items-start pr-4"><img src="assets/images/logo-white.png" width="100px"
                                  class="img-fluid "></div>
                          <div class="align-items-end">
                              <p class="font-weight-bold"> <?php echo date("Y"); ?> © Online Trade Copyrights Reserved

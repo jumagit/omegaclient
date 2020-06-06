@@ -14,31 +14,41 @@ require_once('thirdparty/mpdf/mpdf.php');
 
 if (isset($_GET['id'])) {
 
-$orderId = $_GET['id'];
+
+$orderId = base64_decode($_GET['id']);
 
 
 
-$sql = "SELECT order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due, payment_place,gstn FROM orders WHERE order_id = $orderId";
+$sql = "SELECT orders.order_date, orders.customer_id, orders.sub_total, orders.grand_total, orders.paid, orders.due, customers.customer_names,customers.contact,orders.invoice_number, orders.payment_type  FROM orders INNER JOIN customers ON orders.customer_id = customers.customer_id WHERE orders.order_id = '$orderId' ";
 
-$orderResult = $connection->query($sql);
+$orderResult = mysqli_query($connection,$sql) OR die(mysqli_error($connection));
    while($orderData = mysqli_fetch_array($orderResult)){
        
-       $orderDate = $orderData[0];
-        $clientName = $orderData[1];
-        $clientContact = $orderData[2]; 
-        $subTotal = $orderData[3];
-        $vat = $orderData[4];
-        $totalAmount = $orderData[5]; 
-        $discount = $orderData[6];
-        $grandTotal = $orderData[7];
-        $paid = $orderData[8];
-        $due = $orderData[9];
-        $payment_place = $orderData[10];
-        $gstn = $orderData[11];
-           }
+        $orderDate      = $orderData[0];
+        $customer_id    = $orderData[1];        
+        $subTotal       = $orderData[2];       
+        $grandTotal     = $orderData[3];
+        $paid           = $orderData[4];
+        $due            = $orderData[5];
+        $customer_names = $orderData[6];
+        $contact        = $orderData[7];
+        $invoice_number = $orderData[8];
+        $payment        = $orderData[9]; 
+
+       
+       if($payment === 1){
+        $paymentType = "AIRTEL MOBILE MONEY";
+       }elseif($payment ===2){
+        $paymentType = "MTN MOBILE MONEY";
+       }else{
+        $paymentType ="CENTE MOBILE";
+       }
+    }
 
 
 }
+
+
 
 
 $table = '
@@ -67,9 +77,9 @@ $table = '
                             </td>
                             
                             <td>
-                                Invoice #: 123<br>
+                                Invoice :<span style="color:red;font-weight:bold;"> '.$invoice_number.' </span><br>
                                 Created: '.$orderDate.'<br>
-                                Due: February 1, 2015
+                                Due:UGX <span style="color:green;font-weight:bold;">'.$due.'<span>
                             </td>
                         </tr>
                     </table>
@@ -98,9 +108,9 @@ $table = '
                             </td>
                             
                             <td>
-                              <span style="color:red;">TO:</span>Mukoova '.$clientName.'<br>
+                              <span style="color:red;">TO:</span>Mukoova '.$customer_names.'<br>
                                 mukoovajuma183@gmail.com<br>
-                                '.$clientContact.'
+                                '.$contact.'
                             </td>
                         </tr>
                     </table>
@@ -120,7 +130,14 @@ $table = '
             
             <tr class="details">
                 <td>
-                   <p style="color: red;font-weight:bold;"> Airtel Money</p>
+
+              <span style="font-weight:bold;color:orange;"> '.$paymentType.'</span>
+
+                ';
+                   
+                    
+
+                $table.='
                 </td>
                 
                 <td>
@@ -147,12 +164,12 @@ $table = '
 							
 							
 		
-$orderItemSql = "SELECT order_item.product_id,  order_item.quantityTaken, order_item.total,
-products.product_name, products.price FROM order_item
-   INNER JOIN products ON order_item.product_id = products.product_id 
- WHERE order_item.order_id = $orderId";
-$orderItemResult = $connection->query($orderItemSql);
-$count =0;
+                $orderItemSql = "SELECT order_item.product_id,  order_item.quantityTaken, order_item.total,
+                products.product_name, products.price FROM order_item
+                   INNER JOIN products ON order_item.product_id = products.product_id 
+                 WHERE order_item.order_id = $orderId";
+                $orderItemResult = $connection->query($orderItemSql);
+                $count =0;
 
 			 while($row = $orderItemResult->fetch_array()) {    	
 											
@@ -165,18 +182,14 @@ $count =0;
 								<td class="tableitem"><p class="itemtext">'.$row[1].'</p></td>
 								<td class="tableitem"><p class="itemtext">UGX '. $row[2].'</p></td>
 							</tr>';
-							
+							$grand_total += $row[2];
 							}
 						
                  
 							$table.='
 
 
-							<tr class="tabletitle">
-								<td></td>
-								<td class="Rate"><h2>TAX</h2></td>
-								<td class="payment"><h2>UGX '.$vat.'</h2></td>
-							</tr>
+							
 
 							<tr class="tabletitle">
 								<td></td>

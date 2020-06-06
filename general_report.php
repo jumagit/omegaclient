@@ -23,7 +23,7 @@ if(isset($_POST['submit'])) {
     $me = $_SESSION['client_id'];
     
 
-    $sql = "SELECT * FROM orders WHERE order_date >= '$start_date' AND order_date <= '$end_date' AND order_status = 1 AND client_id = '$me' ";
+    $sql = "SELECT order_date, grand_total, customer_names, contact FROM orders INNER JOIN customers ON orders.customer_id = customers.customer_id  WHERE orders.order_date >= '$start_date' AND orders.order_date <= '$end_date' AND orders.order_status = 1 AND orders.client_id = '$me' ";
     $query = mysqli_query($connection,$sql);
 
     $table = '
@@ -40,12 +40,12 @@ if(isset($_POST['submit'])) {
         $totalAmount = "";
         while ($result = mysqli_fetch_array($query)) {
             $table .= '<tr>
-                <td><center>'.$result['order_date'].'</center></td>
-                <td><center>'.$result['client_name'].'</center></td>
-                <td><center>'.$result['client_contact'].'</center></td>
-                <td><center>UGX  '.$result['grand_total'].'</center></td>
+                <td><center>'.$result[0].'</center></td>
+                <td><center>'.$result[2].'</center></td>
+                <td><center>'.$result[3].'</center></td>
+                <td><center>UGX  '.$result[1].'</center></td>
             </tr>'; 
-            $totalAmount += $result['grand_total'];
+            $totalAmount += $result[1];
         }
         $table .= '
         </tr>

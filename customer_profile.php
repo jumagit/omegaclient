@@ -9,23 +9,11 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="state-information d-none d-sm-block">
-                        <div class="state-graph">
-                            <div id="header-chart-1"></div>
-                            <div class="info">Balance $ 2,317</div>
-                        </div>
-                        <div class="state-graph">
-                            <div id="header-chart-2"></div>
-                            <div class="info">Item Sold 1230</div>
-                        </div>
-                    </div>
+                <div class="col-sm-12 text-center">
+                    
 
-                    <h4 class="page-title">Customer Information</h4>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Customer Information</a></li>
-                       
-                    </ol>
+                    <h2 class=""><i class="mdi mdi-account"></i> Customer's Profile</h2>
+                    
                 </div>
             </div>
         </div>
@@ -119,14 +107,14 @@ if (isset($_GET['id'])) {
                     <div class="card m-b-20">
 
 
-                        <div class="col-8 offset-2">
+                       
                         <div class="card-body p-20 m-30 " style="border: 1px solid lightgray;margin:30px;">
 
                             <h4 class="mt-0 ">Customer Profile</h4>
 
                              <?php if (isset($msg)) {echo $msg;}?>
 
-                            <div class="alert alert-dark bg-dark  font-weight-normal  text-white alert-dismissible fade show"
+                            <div class="alert alert-info  font-weight-normal  alert-dismissible fade show"
                                 role="alert"> <button type="button" class="close" data-dismiss="alert"
                                     aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -138,7 +126,10 @@ if (isset($_GET['id'])) {
                             <form id="personalInformation" method="post" action="#">
 
 
-                                <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-12">
+                                          <div class="form-group">
                                     <label for="customer_names">Full Name</label>
                                     <input type="text" value="<?php if(isset($customer_names)){ echo $customer_names;} ?>"
                                         class="form-control" name="customer_names"
@@ -147,38 +138,48 @@ if (isset($_GET['id'])) {
                                 </div>
 
 
-                                 <div class="form-group">
+                                   <div class="form-group">
                                     <label for="address">Customer Address</label>
                                     <input type="text" value="<?php if(isset($address)){ echo $address; }?>"
                                         class="form-control"
                                         data-bv-field="address" id="address" name="address"
                                         required >
                                         <input type="hidden" name="order_id" value="<?php if(isset($customer_id)){ echo $customer_id; } ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="contact">Mobile Number</label>
-                                    <input type="text" value="<?php if(isset($contact)){ echo $contact;} ?>"
-                                        class="form-control" name="contact" 
-                                        data-bv-field="contact"
-                                        id="contact" required
-                                        >
-                                </div>
-                                <div class="form-group">
-                                    <label for="email_address">Email Address</label>
-                                    <input type="email"
-                                        value="<?php if(isset($email_address)){ echo $email_address;} ?>"
-                                        class="form-control" name="email_address"
-                                        id="email_address" required
-                                        >
-                                </div>
-                             
+                                       </div>
+                                        
 
-                                <hr>
+                                    </div>
 
 
+                                    <div class="col-md-6 col-sm-12">
+
+                                           <div class="form-group">
+                                                 <label for="contact">Mobile Number</label>
+                                            <input type="text" value="<?php if(isset($contact)){ echo $contact;} ?>"
+                                                class="form-control" name="contact" 
+                                                data-bv-field="contact"
+                                                id="contact" required
+                                                >
+                                             </div>
+                                                <div class="form-group">
+                                                    <label for="email_address">Email Address</label>
+                                                    <input type="email"
+                                                        value="<?php if(isset($email_address)){ echo $email_address;} ?>"
+                                                        class="form-control" name="email_address"
+                                                        id="email_address" required
+                                                        >
+                                                </div>
+                                                
+                                        
+                                    </div>
+                            </div>
+
+
                                 <div class="form-group">
-                                    <button type="submit" name="submit" class="btn btn-primary pull-right">Update Customer Information</button>
+                                    <button type="submit" name="submit" class="btn btn-block btn-lg btn-primary ">Update Customer Information</button>
                                 </div>
+
+
                             </form>
 
 
