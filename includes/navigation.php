@@ -101,19 +101,13 @@
                                  <img src="<?php echo $_SESSION['profileImage']; ?>" alt="user" class="rounded-circle">
                              </a>
                              <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                 <!-- item-->
-
-                                 <?php  if(isset($_SESSION['user_id']) ){ ?>
+                           
                                  <a class="dropdown-item" href="activity_logs.php"><i
-                                         class="mdi mdi-lock-open-outline m-r-5"></i> History</a>
+                                         class="mdi mdi-lock-open-outline m-r-5"></i> History</a>                              
 
-                                 <?php }else{ ?>
+                                
 
-                                 <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5"></i>
-                                     Happenings</a>
-
-
-                                 <?php } ?>
+                               
                                  <a class="dropdown-item" href="profile.php"><i
                                          class="mdi mdi-account-circle m-r-5"></i> Profile</a>
 
@@ -147,7 +141,7 @@
                  <!-- Navigation Menu-->
                  <ul class="navigation-menu">
 
-                     <?php  if(isset($_SESSION['client_id']) && !isset($_SESSION['user_id'])){ ?>
+                     <?php  if(isset($_SESSION['client_id'])){ ?>
 
                      <li class="has-submenu">
                          <a href="indexClient.php"><i class="mdi mdi-home"></i>Client Dashboard</a>
@@ -200,32 +194,7 @@
 
 
 
-                     <?php  }else{ ?>
-
-                     <li class="has-submenu">
-                         <a href="indexMain.php"><i class="mdi mdi-home"></i>Admin Dashboard</a>
-                     </li>
-
-
-                     <li class="has-submenu">
-                         <a href="clients.php"><i class="mdi mdi-account-multiple"></i>Suppliers</a>
-
-                     </li>
-
-                     <li class="has-submenu">
-                         <a href="users.php"><i class="mdi mdi-account-multiple-plus"></i>Users</a>
-
-                     </li>
-
-                     <li class="has-submenu">
-                         <a href="adminReport.php"><i class="mdi mdi-finance"></i>General Report</a>
-
-                     </li>
-
-
                      <?php  } ?>
-
-
                  </ul>
                  <!-- End navigation menu -->
              </div> <!-- end #navigation -->
