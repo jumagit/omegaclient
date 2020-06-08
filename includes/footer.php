@@ -84,17 +84,15 @@
 
      
 
-       <script>
-        $(document).ready(function() {
+ <script>
+
+
+    $(document).ready(function() {
             $('form').parsley();
-            
-
-
-
 
 
              
-      function load_unseen_notification(view = '')
+function load_unseen_notification(view = '')
  {
   $.ajax({
    url:"php_action/fetch_notifications.php",

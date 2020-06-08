@@ -1,3 +1,65 @@
+       
+
+//update Payments
+
+  $(document).on("submit", "#updatePayment", function(e) {
+          e.preventDefault();
+
+          var formData = new FormData(this);
+
+          swal({
+               title: "Are you sure?",
+               text: "Okay to update Payment",
+               type: "info",
+               padding: 20,
+               showCancelButton: true,
+               confirmButtonText: "Yes",
+               cancelButtonText: "No, cancel!",
+               confirmButtonClass: "btn btn-success",
+               cancelButtonClass: "btn btn-danger m-l-10",
+               buttonsStyling: false
+          }).then(willSave => {
+               if (willSave) {
+                    $.ajax({
+                         type: "POST",
+                         dataType: "json",
+                         url: "php_action/editPayment.php?t=true",
+                         data: formData,
+                         success: function(result) {
+                              //console.log(result);
+                              if (result.status) {
+                                   swal({
+                                        title: "Good job!",
+                                        padding: 20,
+                                        text: "Good Job! A Payment has been updated Successfully!",
+                                        type: "success"
+                                   });
+
+                                   setTimeout(function() {
+                                        window.location.href ="orders.php";
+                                   }, 1000);
+                              } else {
+                                   swal({
+                                        title: "Oops!",
+                                        padding: 20,
+                                        text: result.msg + "..please try again!",
+                                        type: "warning"
+                                   });
+                              }
+                         },
+                         error: function(jqXHR) {
+                              console.log(jqXHR);
+                         },
+                         cache: false,
+                         contentType: false,
+                         processData: false
+                    });
+               }
+          });
+     });
+    
+
+
    //customers
 
      $(document).on("submit", "#addCustomerForm", function(e) {
@@ -59,95 +121,7 @@
 
 //end customers
 
-   paymentOrder =  function(orderId) {
-          if (orderId) {
-
-               $("#orderDate").datepicker();
-
-               $.ajax({
-                    url: 'php_action/fetch_order_data.php?t=true',
-                    type: 'post',
-                    data: { orderId: orderId },
-                    dataType: 'json',
-                    success: function(response) {
-
-                         //console.log(response);
-
-                         // due 
-                         $("#due").val(response.order[10]);
-
-                         // pay amount 
-                         $("#payAmount").val(response.order[10]);
-
-                         var paidAmount = response.order[9]
-                         var dueAmount = response.order[10];
-                         var grandTotal = response.order[8];
-
-                         // update payment
-                         $("#updatePaymentOrderBtn").unbind('click').bind('click', function() {
-                              var payAmount = $("#payAmount").val();
-                              var paymentType = $("#paymentType").val();
-                              var paymentStatus = $("#paymentStatus").val();
-
-                              if (payAmount && paymentType && paymentStatus) {
-                                   $("#updatePaymentOrderBtn").button('loading');
-                                   $.ajax({
-                                        url: 'php_action/editPayment.php?t=true',
-                                        type: 'post',
-                                        data: {
-                                             orderId: orderId,
-                                             payAmount: payAmount,
-                                             paymentType: paymentType,
-                                             paymentStatus: paymentStatus,
-                                             paidAmount: paidAmount,
-                                             grandTotal: grandTotal
-                                        },
-                                        dataType: 'json',
-                                        success: function(response) {
-
-                                             // console.log(response);
-                                             $("#updatePaymentOrderBtn").button('loading');
-
-                                             $("#paymentOrderModal").modal('hide');
-
-                                             if (response.status) {
-                                                  swal({
-                                                       title: "Good job!",
-                                                       padding: 20,
-                                                       text: " While you wait an Order Payment has been updated!!",
-                                                       type: "success"
-                                                  });
-
-                                                  setTimeout(function() {
-                                                       window.location.reload();
-                                                  }, 1000);
-                                             } else {
-                                                  swal({
-                                                       title: "Oops!",
-                                                       padding: 20,
-                                                       text: result.msg + "..please try again!",
-                                                       type: "warning"
-                                                  });
-                                             }
-
-                                             // // refresh the manage order table
-                                             //           manageOrderTable.ajax.reload(null, false);
-
-                                        } //
-
-                                   });
-                              } // /if
-
-                              return false;
-                         }); // /update payment          
-
-                    } // /success
-               }); // fetch order data
-          } else {
-               alert('Error ! Refresh the page again');
-          }
-     }
-
+  
      function sendMail(orderId) {
 
           var orderId = orderId;

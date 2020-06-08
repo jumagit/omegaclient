@@ -460,7 +460,7 @@ function fetch_orders()
            <td><a href='edit_order.php?id=$order_id' class='btn btn-outline-info'><i class='fa fa-edit'></i></a></td>
       
            <td><a href='invoice.php?id=$order_id'  class='btn btn-outline-success '><i class='fa fa-eye'></i></a></td>
-            <td><a type='button'   class='btn btn-outline-primary' data-toggle='modal' id='paymentOrderModalBtn' data-target='#paymentOrderModal' onclick='paymentOrder($orderId)'> <i class='fas fa-credit-card'></i> Pay</a></td>
+            <td><a href='payments.php?id=$order_id'    class='btn btn-outline-primary' > <i class='fas fa-credit-card'></i> Pay</a></td>
           <td><a href='orders_report.php?id=$order_id' target='_blank' class='btn btn-outline-info '><i class='fa fa-print'></i></a></td>
            
            <td><a onclick='sendMail($orderId)'  class='btn btn-outline-dark '><i class='fa fa-envelope'></i></a></td>
